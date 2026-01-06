@@ -1,23 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useResume } from '@/contexts/ResumeContext';
 
-const wirelessPhrases = [
-  'Physics-informed AI for wireless systems',
-  'Simulation frameworks for 5G research',
-  'OAM multiplexing in turbulent channels',
-  'Deep learning for signal recovery',
-  'Reinforcement learning for network optimization',
-  'Free space optical communications'
-];
-
-const aiMlPhrases = [
-  'Machine learning for financial markets',
-  'AI-powered fintech ecosystems',
-  'Sentiment analysis for trading',
-  'LSTM networks for stock prediction',
-  'Enterprise-grade microservices',
-  'Cross-disciplinary innovation'
+const phrases = [
+  'Systems before surfaces',
+  'Structure reveals intent',
+  'Precision over noise',
+  'Designing constraints into clarity',
+  'Complexity managed through simplicity',
+  'Form follows function, quietly'
 ];
 
 interface CrypticTextProps {
@@ -25,8 +15,6 @@ interface CrypticTextProps {
 }
 
 export function CrypticText({ className = '' }: CrypticTextProps) {
-  const { resumeType } = useResume();
-  const phrases = resumeType === 'wireless' ? wirelessPhrases : aiMlPhrases;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   
@@ -38,7 +26,7 @@ export function CrypticText({ className = '' }: CrypticTextProps) {
     }, 8000);
     
     return () => clearInterval(interval);
-  }, [isPaused, phrases.length]);
+  }, [isPaused]);
   
   // Respect prefers-reduced-motion
   const prefersReducedMotion = typeof window !== 'undefined' 
@@ -47,7 +35,7 @@ export function CrypticText({ className = '' }: CrypticTextProps) {
   
   if (prefersReducedMotion) {
     return (
-      <p className={`text-sm text-zinc-400 dark:text-zinc-500 max-w-md ${className}`}>
+      <p className={`text-sm text-zinc-400 max-w-md ${className}`}>
         {phrases[0]}
       </p>
     );
@@ -69,7 +57,7 @@ export function CrypticText({ className = '' }: CrypticTextProps) {
             duration: 0.8,
             ease: [0.22, 1, 0.36, 1]
           }}
-          className="absolute inset-0 text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-300 dark:hover:text-zinc-400 transition-colors duration-500"
+          className="absolute inset-0 text-sm text-zinc-400 hover:text-zinc-300 transition-colors duration-500"
         >
           <TextReveal text={phrases[currentIndex]} isPaused={isPaused} />
         </motion.p>
