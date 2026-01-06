@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 const socialLinks = [
-  { name: 'LinkedIn', url: '#' },
-  { name: 'GitHub', url: '#' },
-  { name: 'Twitter', url: '#' }
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/srivatsadavuluriiii/' },
+  { name: 'GitHub', url: 'https://github.com/srivatsadavuluriiii' },
+  { name: 'Email', url: 'mailto:connect.davuluri@gmail.com' }
 ];
 
 export default function Footer() {
@@ -15,7 +15,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           {/* Left - Name & Copyright */}
           <div className="space-y-2">
-            <p className="text-sm font-medium text-zinc-900">Portfolio</p>
+            <p className="text-sm font-medium text-zinc-900">Srivatsa Davuluri</p>
             <p className="text-xs text-zinc-400">
               © {currentYear} All rights reserved.
             </p>

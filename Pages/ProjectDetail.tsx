@@ -29,80 +29,152 @@ interface ProjectData {
   reflection: string;
 }
 
-type ProjectSlug = 'meridian-design-system' | 'luminary-dashboard';
+type ProjectSlug = 'beamlabs' | 'oam-beam-recovery' | 'rl-5g-framework' | '6g-dataset';
 
 const projectsData: Record<ProjectSlug, ProjectData> = {
-  'meridian-design-system': {
-    title: 'Meridian Design System',
-    role: 'Lead Designer',
-    year: '2024',
-    client: 'Enterprise SaaS Company',
-    duration: '8 months',
-    heroImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80',
+  'beamlabs': {
+    title: 'BeamLabs: Optical Light Beam Modeling Suite',
+    role: 'Research Developer',
+    year: '2024-2025',
+    client: 'Research Project',
+    duration: 'Dec 2024 — Mar 2025',
+    heroImage: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&auto=format&fit=crop&q=80',
     overview: {
-      problem: 'The client had 12 different products with inconsistent UI patterns, causing user confusion and slowing down development cycles.',
-      solution: 'Created a unified design system with 200+ components, comprehensive documentation, and a Figma library synced with the development codebase.',
-      impact: 'Reduced design-to-development handoff time by 60% and improved user satisfaction scores by 35%.'
+      problem: 'Existing optical beam modeling tools lacked comprehensive coverage of beam types needed for Quantum Optics and RF communication systems research, with slow eigen-mode analysis.',
+      solution: 'Designed an Object-Oriented MATLAB library to model 14 optical beam types. Implemented custom numerical solvers for Mathieu functions and Pearcey integrals, incorporating literature-accurate physical modeling for Gouy phase and M² beam quality factors.',
+      impact: 'Improved eigen-mode analysis speeds by 30%, enabling faster research iterations. Accurate simulation of aperture-loss and timing-jitter for ongoing and future research projects.'
     },
     process: [
       {
-        title: 'Discovery & Audit',
-        description: 'Conducted a comprehensive audit of all 12 products, cataloging 847 unique UI patterns and identifying opportunities for consolidation.'
+        title: 'Literature Review & Requirements',
+        description: 'Analyzed existing beam modeling approaches and identified 14 critical beam types needed for Quantum Optics and RF communication research.'
       },
       {
-        title: 'Foundation',
-        description: 'Established core design tokens for color, typography, spacing, and elevation. Built a flexible grid system that works across all product contexts.'
+        title: 'Numerical Solver Development',
+        description: 'Implemented custom numerical solvers for Mathieu functions and Pearcey integrals, optimizing computational efficiency.'
       },
       {
-        title: 'Component Library',
-        description: 'Designed and documented 200+ components with multiple variants, states, and accessibility considerations built-in.'
+        title: 'Physical Modeling',
+        description: 'Incorporated literature-accurate physical modeling for Gouy phase and M² beam quality factors to simulate aperture-loss and timing-jitter accurately.'
       },
       {
-        title: 'Governance',
-        description: 'Created contribution guidelines, review processes, and training materials to ensure the system scales with the organization.'
+        title: 'Optimization & Validation',
+        description: 'Benchmarked performance improvements and validated accuracy against published research results.'
       }
     ],
     images: [
-      'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1200&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80'
     ],
-    reflection: 'This project reinforced my belief that design systems are as much about people as they are about pixels. The technical implementation was straightforward—the real challenge was building consensus across teams and creating a culture of contribution.'
+    reflection: 'This project reinforced the importance of building reusable research tools. The Object-Oriented approach not only improved performance but also made the library extensible for future beam types and research applications.'
   },
-  'luminary-dashboard': {
-    title: 'Luminary Dashboard',
-    role: 'Product Designer',
-    year: '2024',
-    client: 'Analytics Startup',
-    duration: '4 months',
+  'oam-beam-recovery': {
+    title: 'OAM-Multiplexed Beam Recovery via Turbulent Channel using Deep Learning',
+    role: 'Research Engineer',
+    year: '2025',
+    client: 'Research Project',
+    duration: 'Jan 2025 — Aug 2025',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
     overview: {
-      problem: 'Users were spending an average of 12 minutes to complete basic reporting tasks due to a cluttered, confusing interface.',
-      solution: 'Redesigned the dashboard with a focus on task-based workflows, progressive disclosure, and intelligent defaults.',
-      impact: '40% improvement in task completion rates and 60% reduction in support tickets related to UI confusion.'
+      problem: 'Traditional OAM beam recovery systems require expensive wavefront sensors, increasing link complexity and cost. Strong atmospheric turbulence causes significant phase distortion, degrading Bit Error Rate (BER) performance.',
+      solution: 'Developed a ResNet-18 CNN receiver to recover QPSK symbols from intensity-only optical images. Simulated literature-accurate turbulence layers using Split-Step Fourier Method for Laguerre-Gaussian beam propagation through turbulence-strength parameter sweep.',
+      impact: 'Eliminated need for wavefront sensors, lowering link complexity by 40%. Achieved 20% reduction in Bit Error Rate (BER) through phase distortion compensation in strong turbulence conditions.'
     },
     process: [
       {
-        title: 'User Research',
-        description: 'Conducted 24 user interviews and analyzed session recordings to identify pain points and workflow patterns.'
+        title: 'Turbulence Simulation',
+        description: 'Simulated literature-accurate turbulence layers using Split-Step Fourier Method for Laguerre-Gaussian beam propagation, sweeping turbulence-strength parameter from Cn² ≈ 10⁻¹⁸ to 10⁻¹³.'
       },
       {
-        title: 'Information Architecture',
-        description: 'Restructured the navigation and data hierarchy based on actual usage patterns rather than organizational silos.'
+        title: 'Dataset Generation',
+        description: 'Generated comprehensive training datasets with various turbulence conditions, SNR levels, and modal crosstalk scenarios.'
       },
       {
-        title: 'Prototyping',
-        description: 'Created high-fidelity prototypes and tested with users through 3 iteration cycles before development.'
+        title: 'Deep Learning Architecture',
+        description: 'Designed and trained ResNet-18 CNN architecture optimized for intensity-only image input to recover QPSK symbols.'
       },
       {
-        title: 'Implementation',
-        description: 'Worked closely with engineering to ensure the design vision was maintained through development.'
+        title: 'Benchmarking & Analysis',
+        description: 'Benchmarked against classical MMSE equalizers in strong turbulence, analyzing BER performance and robustness against modal crosstalk and SNR variations.'
       }
     ],
     images: [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80'
     ],
-    reflection: 'Data visualization is about storytelling, not decoration. The most impactful change was removing 70% of the original interface elements—what remained was exactly what users needed.'
+    reflection: 'This project demonstrated the power of combining physics-informed simulation with deep learning. The key insight was that intensity-only detection could be sufficient when paired with the right neural architecture, opening new possibilities for simplified FSO link designs.'
+  },
+  'rl-5g-framework': {
+    title: 'Python-informed Mode Switching RL Framework for 5G-beyond Network Targets',
+    role: 'Research Engineer',
+    year: '2025-Present',
+    client: 'Research Project',
+    duration: 'Oct 2025 — Present',
+    heroImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80',
+    overview: {
+      problem: '5G-beyond networks require dynamic optimization of OAM modes based on environment and signal conditions, but traditional approaches struggle to meet 6G KPI targets for latency and throughput efficiency.',
+      solution: 'Developed a physics-aware RL framework complying with 6G KPI targets, optimally switching OAM modes to current environment and signal conditions. Investigated Physics-Informed DQN agent with 52-dimensional action space, integrating ITU-R/IEEE standards for THz propagation (26.5-300 GHz) and channel capacity.',
+      impact: 'Achieved sub-0.1 ms latency while maximizing throughput efficiency. Currently achieving 80+% prediction accuracy across indoor and outdoor propagation scenarios. Exploring transfer learning to reduce training complexity by 60% for lossless compliance.'
+    },
+    process: [
+      {
+        title: 'Environment Design',
+        description: 'Designed a Gymnasium-compatible RL environment for real-time KPI target monitoring, incorporating ITU-R/IEEE standards for THz propagation and channel capacity modeling.'
+      },
+      {
+        title: 'Physics-Informed DQN',
+        description: 'Developed Physics-Informed DQN agent with 52-dimensional action space, integrating physical constraints and propagation models into the learning process.'
+      },
+      {
+        title: 'Training & Optimization',
+        description: 'Trained agent across diverse indoor and outdoor propagation scenarios, optimizing for sub-0.1 ms latency and maximum throughput efficiency.'
+      },
+      {
+        title: 'Transfer Learning Exploration',
+        description: 'Investigating transfer learning approaches to bridge simulation-to-reality gaps, reducing training complexity by 60% while maintaining lossless compliance.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80'
+    ],
+    reflection: 'This ongoing project represents the intersection of reinforcement learning and wireless communications. The challenge isn\'t just achieving good performance—it\'s ensuring the learned policies respect physical constraints and can generalize from simulation to real-world deployment.'
+  },
+  '6g-dataset': {
+    title: '6G OAM-THz Channel Dataset: ITU-R IMT-2030 Compliant',
+    role: 'Research Contributor',
+    year: '2025',
+    client: 'IEEE Dataport Publication',
+    duration: 'Aug 2025',
+    heroImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80',
+    overview: {
+      problem: 'Lack of comprehensive, physics-based datasets for OAM beam communications at sub-Terahertz/mmWave frequencies (300-600 GHz) that meet 6G specifications and support Deep Reinforcement Learning research.',
+      solution: 'Published the first physics-based dataset with 250k+ realistic samples for OAM beam communications. Simulated 33 physics parameters including atmospheric turbulence and hardware impairments to meet 6G specifications and ITU-R IMT-2030 compliance.',
+      impact: 'Dataset published on IEEE Dataport (DOI: 10.21227/ej85-xp25) and TechRxiv. Validated on machine learning tasks achieving sub-80% prediction accuracy for throughput, latency, and energy efficiency. Established benchmark for Deep Reinforcement Learning algorithms in dynamic environments.'
+    },
+    process: [
+      {
+        title: 'Physics Simulation Framework',
+        description: 'Developed comprehensive simulation framework incorporating 33 physics parameters including atmospheric turbulence, hardware impairments, and propagation characteristics.'
+      },
+      {
+        title: 'Dataset Generation',
+        description: 'Generated 250k+ realistic samples covering diverse scenarios at sub-Terahertz/mmWave frequencies (300-600 GHz), ensuring ITU-R IMT-2030 compliance.'
+      },
+      {
+        title: 'Validation & Benchmarking',
+        description: 'Validated dataset on machine learning tasks for predicting throughput, latency, and energy efficiency, achieving sub-80% prediction accuracy.'
+      },
+      {
+        title: 'Publication & Documentation',
+        description: 'Published dataset on IEEE Dataport and TechRxiv with comprehensive documentation, establishing benchmark for Deep Reinforcement Learning research in wireless networks.'
+      }
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&auto=format&fit=crop&q=80'
+    ],
+    reflection: 'Creating this dataset required balancing physical accuracy with computational feasibility. The result is a resource that enables reproducible research in 6G communications while respecting the underlying physics of electromagnetic propagation.'
   }
 };
 
@@ -165,7 +237,7 @@ export default function ProjectDetail() {
               <p className="text-sm text-zinc-900">{project.role}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Client</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Organization</p>
               <p className="text-sm text-zinc-900">{project.client}</p>
             </div>
             <div>
@@ -325,7 +397,7 @@ export default function ProjectDetail() {
             to={createPageUrl('Contact')}
             className="text-sm text-zinc-900 hover:text-zinc-600 transition-colors duration-300 flex items-center gap-1"
           >
-            Start a project
+            Get in touch
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>

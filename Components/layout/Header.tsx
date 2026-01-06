@@ -38,7 +38,7 @@ export default function Header() {
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="relative group">
               <span className="text-lg font-medium tracking-tight text-zinc-900">
-                Portfolio
+                Srivatsa Davuluri
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 group-hover:w-full transition-all duration-300" />
             </Link>

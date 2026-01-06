@@ -10,47 +10,41 @@ import {
 
 const experience = [
   {
-    role: 'Senior Product Designer',
-    company: 'Tech Company',
-    period: '2022 — Present',
-    description: 'Leading design for core product experiences, managing a design system, and mentoring junior designers.'
+    role: 'Senior Software Engineering Intern - iOS Development',
+    company: 'Chamberly AB',
+    period: 'Dec 2023 — Sep 2024',
+    description: 'Optimized app performance and navigation flow, reducing user steps by 27% and latency by 12%. Structured backend systems for reliable Apple Push Notifications, increasing user retention by 22%. Integrated feature updates in an Agile environment, contributing to a 19% increase in Monthly Active Users (MAU).'
   },
   {
-    role: 'Product Designer',
-    company: 'Design Agency',
-    period: '2019 — 2022',
-    description: 'Worked with clients across fintech, healthcare, and e-commerce to deliver end-to-end product design solutions.'
-  },
-  {
-    role: 'UX Designer',
-    company: 'Startup',
-    period: '2017 — 2019',
-    description: 'First design hire. Built design processes from scratch and shipped multiple product launches.'
+    role: 'Summer Research Assistant',
+    company: 'VIT Wireless and Communication Lab',
+    period: 'May 2025 — July 2025',
+    description: 'Validated fundamental Wireless and Mobile Communication (WMC) concepts through lab experiments, focusing on signal propagation models and modulation techniques. Spearheaded research synthesis for optical communication studies with international research teams to align simulation frameworks and validate results.'
   }
 ];
 
 const skills = [
-  { category: 'Design', items: ['Product Design', 'Design Systems', 'Brand Identity', 'Visual Design'] },
-  { category: 'Research', items: ['User Interviews', 'Usability Testing', 'Data Analysis', 'Competitive Analysis'] },
-  { category: 'Tools', items: ['Figma', 'Framer', 'Principle', 'Adobe Suite'] },
-  { category: 'Development', items: ['HTML/CSS', 'React', 'Tailwind', 'Git'] }
+  { category: 'RF & Simulation Tools', items: ['Cadence Virtuoso', 'Cadence AWR', 'LTSpice', 'ModelSim', 'NI Multisim', 'NetSim', 'Optiwave', 'MATLAB'] },
+  { category: 'Languages', items: ['Python', 'Java', 'R', 'MATLAB', 'Embedded C', 'C++', 'Verilog HDL', 'Swift', 'UIKit', 'Assembly'] },
+  { category: 'Core Domains', items: ['Free Space Optical Communications (FSO)', '5G-beyond Networks', 'Signal Processing', 'Machine Learning', 'AI', 'Deep Learning'] },
+  { category: 'DevOps & Cloud', items: ['Docker', 'Git', 'CI/CD', 'Jenkins', 'AWS', 'GCP'] }
 ];
 
 const principles = [
   {
     number: '01',
-    title: 'Clarity over cleverness',
-    description: 'The best design solutions are often the simplest. I prioritize clear communication over showing off.'
+    title: 'Physics-informed approaches',
+    description: 'Every simulation and model respects the underlying principles of electromagnetic propagation. I prioritize accuracy and physical realism over computational convenience.'
   },
   {
     number: '02',
-    title: 'Systems thinking',
-    description: 'Every design decision ripples outward. I consider how individual elements work within the larger ecosystem.'
+    title: 'Simulation-to-reality bridge',
+    description: 'Research should translate to practical applications. I focus on reducing the gap between theoretical models and real-world deployment in wireless systems.'
   },
   {
     number: '03',
-    title: 'Evidence-based design',
-    description: 'Intuition informed by data. I combine user research with design instinct to make confident decisions.'
+    title: 'AI-assisted signal processing',
+    description: 'Combining deep learning with classical signal processing techniques to solve complex problems in optical and wireless communications.'
   }
 ];
 
@@ -93,7 +87,7 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              I'm a designer who believes great products come from understanding people first and pixels second.
+              Final-year Electronics and Communication Engineering student researching Free Space Optical communications and beyond 5G networks.
             </motion.h1>
             
             <motion.div
@@ -103,13 +97,13 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <p>
-                With over seven years of experience in product design, I've worked with startups, agencies, and enterprise companies to create digital experiences that are both beautiful and functional.
+                I'm pursuing proficiency in <strong>Free Space Optical (FSO)</strong> communications and <strong>Telecommunication Networks</strong>, currently exploring opportunities in MATLAB/Python-based simulation frameworks using AI-assisted signal processing for OAM-enabled beyond 5G wireless development.
               </p>
               <p>
-                My approach combines strategic thinking with craft. I believe design should solve real problems, not just look good in a portfolio. Every project starts with understanding the 'why' before moving to the 'how'.
+                My research focuses on physics-informed machine learning approaches that bridge simulation and reality. I develop deep learning models for signal recovery, reinforcement learning frameworks for network optimization, and comprehensive datasets that advance the field of optical and wireless communications.
               </p>
               <p>
-                When I'm not designing, you'll find me reading about behavioral psychology, experimenting with generative art, or exploring hiking trails in the Pacific Northwest.
+                Currently studying at <strong>Vellore Institute of Technology</strong>, expected to graduate in August 2026. I'm eager to learn from industry experts and contribute to solving real-world problems in telecommunications and optical communications.
               </p>
             </motion.div>
           </div>

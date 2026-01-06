@@ -11,36 +11,36 @@ import { ArrowRight } from 'lucide-react';
 
 const selectedProjects = [
   {
-    title: 'Meridian Design System',
-    description: 'A comprehensive design system for enterprise applications, focusing on accessibility and scalability.',
-    role: 'Lead Designer',
-    year: '2024',
-    slug: 'meridian-design-system',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80'
+    title: 'BeamLabs: Optical Beam Modeling Suite',
+    description: 'Object-Oriented MATLAB library to model 14 optical beam types for Quantum Optics and RF communication systems research.',
+    role: 'Research Developer',
+    year: '2024-2025',
+    slug: 'beamlabs',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Luminary Dashboard',
-    description: 'Analytics platform redesign resulting in 40% improvement in user task completion rates.',
-    role: 'Product Designer',
-    year: '2024',
-    slug: 'luminary-dashboard',
+    title: 'OAM-Multiplexed Beam Recovery via Deep Learning',
+    description: 'ResNet-18 CNN receiver to recover QPSK symbols from intensity-only optical images, reducing link complexity by 40%.',
+    role: 'Research Engineer',
+    year: '2025',
+    slug: 'oam-beam-recovery',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Vertex Mobile App',
-    description: 'End-to-end mobile experience design for a fintech startup, from concept to launch.',
-    role: 'UX Designer',
-    year: '2023',
-    slug: 'vertex-mobile',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80'
+    title: 'RL Framework for 5G-beyond Networks',
+    description: 'Physics-informed DQN agent with 52-dimensional action space for optimal OAM mode switching, achieving sub-0.1ms latency.',
+    role: 'Research Engineer',
+    year: '2025-Present',
+    slug: 'rl-5g-framework',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Onyx Brand Identity',
-    description: 'Complete brand identity and digital presence for a luxury interior design studio.',
-    role: 'Brand Designer',
-    year: '2023',
-    slug: 'onyx-brand',
-    image: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&auto=format&fit=crop&q=80'
+    title: '6G OAM-THz Channel Dataset',
+    description: 'Published first physics-based dataset with 250k+ samples for OAM beam communications at sub-Terahertz frequencies.',
+    role: 'Research Contributor',
+    year: '2025',
+    slug: '6g-dataset',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -56,7 +56,7 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
-              Designer & Developer
+              Research Engineer & Developer
             </p>
           </motion.div>
           
@@ -78,7 +78,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            Design systems, product interfaces, and brand identities built with precision and purpose.
+            Exploring Free Space Optical communications and 5G-beyond networks through AI-assisted signal processing and simulation frameworks.
           </motion.p>
           
           <motion.div
@@ -151,13 +151,13 @@ export default function Home() {
           
           <ScrollReveal delay={0.1}>
             <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-zinc-900 leading-[1.3]">
-              Good design is invisible. It doesn't demand attention—it earns trust through clarity, consistency, and craft.
+              Research that bridges simulation and reality. Every algorithm, every model, every dataset serves to advance wireless communications.
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
             <p className="mt-8 text-zinc-500 leading-relaxed max-w-2xl mx-auto">
-              I believe in stripping away the unnecessary until only the essential remains. Every pixel, every interaction, every word serves a purpose. The result is work that feels effortless to use, even when it took tremendous effort to create.
+              I believe in physics-informed approaches that respect the underlying principles of electromagnetic propagation. Every simulation, every neural network, every optimization serves to solve real-world problems in optical and wireless communications.
             </p>
           </ScrollReveal>
         </div>
@@ -179,13 +179,13 @@ export default function Home() {
         <div className="text-center">
           <ScrollReveal>
             <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-white mb-6">
-              Let's build something meaningful.
+              Let's advance wireless communications together.
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
             <p className="text-zinc-400 mb-10 max-w-xl mx-auto">
-              Currently available for select projects and collaborations.
+              Open to research collaborations, internships, and opportunities in FSO communications and 5G-beyond networks.
             </p>
           </ScrollReveal>
           

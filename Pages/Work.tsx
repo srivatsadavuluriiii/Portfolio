@@ -7,58 +7,40 @@ import { LayoutGrid, List } from 'lucide-react';
 
 const projects = [
   {
-    title: 'Meridian Design System',
-    description: 'A comprehensive design system for enterprise applications, focusing on accessibility and scalability.',
-    role: 'Lead Designer',
-    year: '2024',
-    outcome: 'Reduced design-to-development time by 60%',
-    slug: 'meridian-design-system',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80'
+    title: 'BeamLabs: Optical Light Beam Modeling Suite',
+    description: 'Designed an Object-Oriented MATLAB library to model 14 optical beam types for ongoing and future research in Quantum Optics and RF communication systems.',
+    role: 'Research Developer',
+    year: 'Dec 2024 — Mar 2025',
+    outcome: 'Improved eigen-mode analysis speeds by 30%',
+    slug: 'beamlabs',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Luminary Dashboard',
-    description: 'Analytics platform redesign resulting in 40% improvement in user task completion rates.',
-    role: 'Product Designer',
-    year: '2024',
-    outcome: '40% improvement in task completion',
-    slug: 'luminary-dashboard',
+    title: 'OAM-Multiplexed Beam Recovery via Turbulent Channel using Deep Learning',
+    description: 'Developed a ResNet-18 CNN receiver to recover QPSK symbols from intensity-only optical images, aiming to eliminate the need for wavefront sensors, lowering link complexity by 40%.',
+    role: 'Research Engineer',
+    year: 'Jan 2025 — Aug 2025',
+    outcome: 'Reduced Bit Error Rate (BER) by 20%',
+    slug: 'oam-beam-recovery',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Vertex Mobile App',
-    description: 'End-to-end mobile experience design for a fintech startup, from concept to launch.',
-    role: 'UX Designer',
-    year: '2023',
-    outcome: '100k+ downloads in first month',
-    slug: 'vertex-mobile',
-    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&auto=format&fit=crop&q=80'
+    title: 'Python-informed Mode Switching RL Framework for 5G-beyond Network Targets',
+    description: 'Developed a physics-aware RL framework complying with 6G KPI targets, optimally switching OAM modes to current environment and signal conditions, achieving sub-0.1 ms latency.',
+    role: 'Research Engineer',
+    year: 'Oct 2025 — Present',
+    outcome: '80+% prediction accuracy across scenarios',
+    slug: 'rl-5g-framework',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80'
   },
   {
-    title: 'Onyx Brand Identity',
-    description: 'Complete brand identity and digital presence for a luxury interior design studio.',
-    role: 'Brand Designer',
-    year: '2023',
-    outcome: 'Featured in Design Week Magazine',
-    slug: 'onyx-brand',
-    image: 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&auto=format&fit=crop&q=80'
-  },
-  {
-    title: 'Prism Analytics',
-    description: 'Data visualization platform helping teams make sense of complex datasets.',
-    role: 'UX/UI Designer',
-    year: '2023',
-    outcome: 'Acquired by larger analytics firm',
-    slug: 'prism-analytics',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80'
-  },
-  {
-    title: 'Horizon E-commerce',
-    description: 'Complete redesign of a fashion e-commerce platform focused on conversion optimization.',
-    role: 'Product Designer',
-    year: '2022',
-    outcome: '28% increase in conversion rate',
-    slug: 'horizon-ecommerce',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80'
+    title: '6G OAM-THz Channel Dataset: ITU-R IMT-2030 Compliant',
+    description: 'Published the first physics-based dataset with 250k+ realistic samples for OAM beam communications at sub-Terahertz/mmWave frequencies (300-600 GHz).',
+    role: 'Research Contributor',
+    year: 'Aug 2025',
+    outcome: 'Published on IEEE Dataport',
+    slug: '6g-dataset',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -85,7 +67,7 @@ export default function Work() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            Selected projects showcasing depth over breadth.
+            Research projects advancing optical and wireless communications.
           </motion.h1>
           
           <motion.p
@@ -94,7 +76,7 @@ export default function Work() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            Each project represents a commitment to solving real problems through thoughtful design and meticulous execution.
+            Each project represents a commitment to advancing wireless communications through physics-informed research and AI-assisted signal processing.
           </motion.p>
         </div>
       </Section>
@@ -170,12 +152,12 @@ export default function Work() {
             </p>
             <p className="text-lg text-zinc-900">
               <a 
-                href="mailto:hello@portfolio.com"
+                href="mailto:connect.davuluri@gmail.com"
                 className="border-b border-zinc-300 hover:border-zinc-900 transition-colors duration-300"
               >
                 Get in touch
               </a>
-              {' '}to discuss your project.
+              {' '}to discuss research opportunities or collaborations.
             </p>
           </FadeIn>
         </div>

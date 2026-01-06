@@ -47,7 +47,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            Let's create something meaningful together.
+            Let's advance wireless communications research together.
           </motion.h1>
           
           <motion.p
@@ -56,7 +56,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            Whether you have a project in mind, want to explore a collaboration, or just want to say hello—I'd love to hear from you.
+            Whether you're interested in research collaboration, have opportunities in FSO communications or 5G-beyond networks, or want to discuss my work—I'd love to connect.
           </motion.p>
           
           {/* Contact Info */}
@@ -67,19 +67,19 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <a 
-              href="mailto:hello@portfolio.com"
+              href="mailto:connect.davuluri@gmail.com"
               className="flex items-center gap-3 text-zinc-600 hover:text-zinc-900 transition-colors duration-300 group"
             >
               <Mail className="w-5 h-5" />
               <span className="border-b border-transparent group-hover:border-zinc-900 transition-all duration-300">
-                hello@portfolio.com
+                connect.davuluri@gmail.com
               </span>
               <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
             
             <div className="flex items-center gap-3 text-zinc-500">
               <MapPin className="w-5 h-5" />
-              <span>San Francisco, CA</span>
+              <span>Vellore, Tamil Nadu, India</span>
             </div>
           </motion.div>
         </div>
@@ -102,10 +102,10 @@ export default function Contact() {
           <FadeIn>
             <div className="max-w-md">
               <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-6">
-                Start a project
+                Research & Opportunities
               </h2>
               <p className="text-zinc-600 leading-relaxed mb-8">
-                I'm currently taking on select projects for Q2 2024. If you have an interesting challenge, I'd love to hear about it.
+                Currently seeking research opportunities, internships, and collaborations in Free Space Optical communications, 5G-beyond networks, and AI-assisted signal processing.
               </p>
               
               <div className="space-y-4 text-sm text-zinc-500">
@@ -113,7 +113,10 @@ export default function Contact() {
                   <span className="text-zinc-900 font-medium">Response time:</span> Usually within 24-48 hours
                 </p>
                 <p>
-                  <span className="text-zinc-900 font-medium">Availability:</span> Open for new projects
+                  <span className="text-zinc-900 font-medium">Status:</span> Final-year undergraduate, graduating Aug 2026
+                </p>
+                <p>
+                  <span className="text-zinc-900 font-medium">Phone:</span> (+91) 9873342537
                 </p>
               </div>
             </div>
@@ -168,7 +171,7 @@ export default function Contact() {
                   <Textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell me about your project..."
+                    placeholder="Tell me about your research opportunity or collaboration..."
                     required
                     rows={6}
                     className="rounded-none border-zinc-300 focus:border-zinc-900 focus:ring-0 transition-colors duration-200 resize-none"
@@ -212,7 +215,7 @@ export default function Contact() {
         <div className="max-w-6xl mx-auto px-6 md:px-8 text-center">
           <p className="text-sm">
             <span className="inline-block w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse" />
-            Currently available for new projects
+            Open to research opportunities and collaborations
           </p>
         </div>
       </motion.div>

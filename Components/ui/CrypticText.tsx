@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const phrases = [
-  'Systems before surfaces',
-  'Structure reveals intent',
-  'Precision over noise',
-  'Designing constraints into clarity',
-  'Complexity managed through simplicity',
-  'Form follows function, quietly'
+  'Physics-informed AI for wireless systems',
+  'Simulation frameworks for 6G research',
+  'OAM multiplexing in turbulent channels',
+  'Deep learning for signal recovery',
+  'Reinforcement learning for network optimization',
+  'Free space optical communications'
 ];
 
 interface CrypticTextProps {

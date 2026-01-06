@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const lines = [
-  'I craft digital',
-  'experiences that',
-  'feel inevitable.'
+  'I research optical',
+  'communications and',
+  'beyond 5G networks.'
 ];
 
 // Character pool for scrambling
