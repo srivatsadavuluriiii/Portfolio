@@ -1,0 +1,18 @@
+{
+  "build": {
+    "command": "npm run build",
+    "cwd": ".",
+    "watch_paths": [],
+    "output_directory": "dist"
+  },
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
+
