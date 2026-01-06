@@ -1,4 +1,4 @@
-import { useState, FormEvent, useCallback, ChangeEvent } from 'react';
+import { useState, FormEvent, useCallback, ChangeEvent, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { FadeIn } from '@/Components/ui/AnimatedText';
@@ -7,30 +7,36 @@ import { Input } from '@/Components/ui/input';
 import { Textarea } from '@/Components/ui/textarea';
 import { ArrowUpRight, Mail, MapPin, Send } from 'lucide-react';
 
+// Memoized input components to prevent unnecessary re-renders
+const MemoizedInput = memo(Input);
+const MemoizedTextarea = memo(Textarea);
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  // Optimized change handlers
+  // Individual state handlers - prevents re-render of other fields
   const handleNameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({ ...prev, name: e.target.value }));
+    e.stopPropagation();
+    setName(e.target.value);
   }, []);
   
   const handleEmailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({ ...prev, email: e.target.value }));
+    e.stopPropagation();
+    setEmail(e.target.value);
   }, []);
   
   const handleMessageChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, message: e.target.value }));
+    e.stopPropagation();
+    setMessage(e.target.value);
   }, []);
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -156,33 +162,38 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Name</label>
-                  <Input
+                  <label htmlFor="name-input" className="text-sm text-zinc-600 dark:text-zinc-300">Name</label>
+                  <MemoizedInput
+                    id="name-input"
                     type="text"
-                    value={formData.name}
+                    value={name}
                     onChange={handleNameChange}
                     placeholder="Your name"
                     required
+                    autoComplete="name"
                     className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Email</label>
-                  <Input
+                  <label htmlFor="email-input" className="text-sm text-zinc-600 dark:text-zinc-300">Email</label>
+                  <MemoizedInput
+                    id="email-input"
                     type="email"
-                    value={formData.email}
+                    value={email}
                     onChange={handleEmailChange}
                     placeholder="your@email.com"
                     required
+                    autoComplete="email"
                     className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Message</label>
-                  <Textarea
-                    value={formData.message}
+                  <label htmlFor="message-input" className="text-sm text-zinc-600 dark:text-zinc-300">Message</label>
+                  <MemoizedTextarea
+                    id="message-input"
+                    value={message}
                     onChange={handleMessageChange}
                     placeholder="Tell me about your research opportunity or collaboration..."
                     required
