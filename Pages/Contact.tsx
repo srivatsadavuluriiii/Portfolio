@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useCallback, ChangeEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { FadeIn } from '@/Components/ui/AnimatedText';
@@ -15,6 +15,19 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  
+  // Optimized change handlers
+  const handleNameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, name: e.target.value }));
+  }, []);
+  
+  const handleEmailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, email: e.target.value }));
+  }, []);
+  
+  const handleMessageChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, message: e.target.value }));
+  }, []);
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -147,7 +160,7 @@ export default function Contact() {
                   <Input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={handleNameChange}
                     placeholder="Your name"
                     required
                     className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
@@ -155,11 +168,11 @@ export default function Contact() {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600">Email</label>
+                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Email</label>
                   <Input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={handleEmailChange}
                     placeholder="your@email.com"
                     required
                     className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
@@ -167,14 +180,14 @@ export default function Contact() {
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600">Message</label>
+                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Message</label>
                   <Textarea
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={handleMessageChange}
                     placeholder="Tell me about your research opportunity or collaboration..."
                     required
                     rows={6}
-                    className="rounded-none border-zinc-300 focus:border-zinc-900 focus:ring-0 transition-colors duration-200 resize-none"
+                    className="rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200 resize-none"
                   />
                 </div>
                 
