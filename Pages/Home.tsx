@@ -121,13 +121,17 @@ export default function Home() {
           
           <ScrollReveal delay={0.1}>
             <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.3]">
-              Research that bridges simulation and reality. Every algorithm, every model, every dataset serves to advance wireless communications.
+              {resumeType === 'wireless' 
+                ? 'Research that bridges simulation and reality. Every algorithm, every model, every dataset serves to advance wireless communications.'
+                : 'Building intelligent systems that solve real-world problems. Every algorithm, every model, every solution serves to advance AI and software engineering.'}
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
             <p className="mt-8 text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-              I believe in physics-informed approaches that respect the underlying principles of electromagnetic propagation. Every simulation, every neural network, every optimization serves to solve real-world problems in optical and wireless communications.
+              {resumeType === 'wireless'
+                ? 'I believe in physics-informed approaches that respect the underlying principles of electromagnetic propagation. Every simulation, every neural network, every optimization serves to solve real-world problems in optical and wireless communications.'
+                : 'I believe in data-driven innovation that combines machine learning with practical applications. Every model, every system, every architecture serves to solve real-world problems through intelligent technology.'}
             </p>
           </ScrollReveal>
         </div>
@@ -149,13 +153,17 @@ export default function Home() {
         <div className="text-center">
           <ScrollReveal>
             <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-white mb-6">
-              Let's advance wireless communications together.
+              {resumeType === 'wireless'
+                ? 'Let\'s advance wireless communications together.'
+                : 'Let\'s build intelligent systems together.'}
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
             <p className="text-zinc-400 dark:text-zinc-500 mb-10 max-w-xl mx-auto">
-              Open to research collaborations, internships, and opportunities in FSO communications and 5G-beyond networks.
+              {resumeType === 'wireless'
+                ? 'Open to research collaborations, internships, and opportunities in FSO communications and 5G-beyond networks.'
+                : 'Open to collaborations, internships, and opportunities in Machine Learning, AI, and Software Engineering.'}
             </p>
           </ScrollReveal>
           

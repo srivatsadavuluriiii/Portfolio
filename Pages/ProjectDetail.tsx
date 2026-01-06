@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { FadeIn } from '@/Components/ui/AnimatedText';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { useResume } from '@/contexts/ResumeContext';
+import { getResumeData } from '@/data/resumeData';
 
 interface ProjectProcess {
   title: string;
@@ -202,9 +204,27 @@ const defaultProject = {
 };
 
 export default function ProjectDetail() {
+  const { resumeType } = useResume();
+  const resumeData = getResumeData(resumeType);
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get('slug') || 'default';
-  const project: ProjectData = (slug in projectsData ? projectsData[slug as ProjectSlug] : defaultProject);
+  
+  // Find project in current resume data
+  const resumeProject = resumeData.projects.find(p => p.slug === slug);
+  
+  // Convert resume project to ProjectData format if found
+  const project: ProjectData = resumeProject && resumeProject.overview ? {
+    title: resumeProject.title,
+    role: resumeProject.role,
+    year: resumeProject.year,
+    client: resumeProject.client || 'Project',
+    duration: resumeProject.duration || resumeProject.year,
+    heroImage: resumeProject.heroImage || resumeProject.image || 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&auto=format&fit=crop&q=80',
+    overview: resumeProject.overview,
+    process: resumeProject.process || [],
+    images: resumeProject.images || [],
+    reflection: resumeProject.reflection || 'This project represents a significant contribution to the field.',
+  } : (slug in projectsData ? projectsData[slug as ProjectSlug] : defaultProject);
   
   return (
     <div className="pt-16 md:pt-20">

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useResume } from '@/contexts/ResumeContext';
 
-const phrases = [
+const wirelessPhrases = [
   'Physics-informed AI for wireless systems',
   'Simulation frameworks for 5G research',
   'OAM multiplexing in turbulent channels',
@@ -10,11 +11,22 @@ const phrases = [
   'Free space optical communications'
 ];
 
+const aiMlPhrases = [
+  'Machine learning for financial markets',
+  'AI-powered fintech ecosystems',
+  'Sentiment analysis for trading',
+  'LSTM networks for stock prediction',
+  'Enterprise-grade microservices',
+  'Cross-disciplinary innovation'
+];
+
 interface CrypticTextProps {
   className?: string;
 }
 
 export function CrypticText({ className = '' }: CrypticTextProps) {
+  const { resumeType } = useResume();
+  const phrases = resumeType === 'wireless' ? wirelessPhrases : aiMlPhrases;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   
@@ -26,7 +38,7 @@ export function CrypticText({ className = '' }: CrypticTextProps) {
     }, 8000);
     
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, phrases.length]);
   
   // Respect prefers-reduced-motion
   const prefersReducedMotion = typeof window !== 'undefined' 

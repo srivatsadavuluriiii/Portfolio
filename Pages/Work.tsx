@@ -33,7 +33,9 @@ export default function Work() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            Research projects advancing optical and wireless communications.
+            {resumeType === 'wireless'
+              ? 'Research projects advancing optical and wireless communications.'
+              : 'Projects building intelligent systems and scalable solutions.'}
           </motion.h1>
           
           <motion.p
@@ -42,7 +44,9 @@ export default function Work() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            Each project represents a commitment to advancing wireless communications through physics-informed research and AI-assisted signal processing.
+            {resumeType === 'wireless'
+              ? 'Each project represents a commitment to advancing wireless communications through physics-informed research and AI-assisted signal processing.'
+              : 'Each project represents a commitment to building intelligent systems through machine learning, software engineering, and innovative technology solutions.'}
           </motion.p>
         </div>
       </Section>
