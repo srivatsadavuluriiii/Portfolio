@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const lines = [
@@ -7,18 +7,23 @@ const lines = [
   'feel inevitable.'
 ];
 
-// Character pool for brief scrambling
-const scrambleChars = 'abcdefghijklmnopqrstuvwxyz';
+// Character pool for scrambling
+const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
 
 interface InevitableTextProps {
   className?: string;
+  speed?: number;
+  maxIterations?: number;
 }
 
-export function InevitableText({ className = '' }: InevitableTextProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { margin: '-10%' });
-  const [hasBeenViewed, setHasBeenViewed] = useState(false);
-  const [isScrambling, setIsScrambling] = useState(false);
+export function InevitableText({ 
+  className = '', 
+  speed = 30,
+  maxIterations = 8,
+  ...props 
+}: InevitableTextProps) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const isInView = useInView(ref, { margin: '-10%', once: true });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   
   useEffect(() => {
@@ -30,152 +35,124 @@ export function InevitableText({ className = '' }: InevitableTextProps) {
     
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
-  
-  useEffect(() => {
-    // STATE 1: First view - clean entrance
-    if (isInView && !hasBeenViewed) {
-      setHasBeenViewed(true);
-      return;
-    }
-    
-    // STATE 3: Re-entry - trigger cryptic reveal
-    if (isInView && hasBeenViewed && !prefersReducedMotion) {
-      setIsScrambling(true);
-      
-      // Fast scramble duration: 280ms
-      const timer = setTimeout(() => {
-        setIsScrambling(false);
-      }, 280);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, hasBeenViewed, prefersReducedMotion]);
-  
-  // Reduced motion: simple fade
+
+  // Reduced motion: simple display
   if (prefersReducedMotion) {
     return (
-      <h1 ref={ref} className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 leading-[1.1] ${className}`}>
+      <h1 
+        ref={ref} 
+        className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 leading-[1.1] ${className}`}
+        {...props}
+      >
         {lines.map((line, i) => (
-          <React.Fragment key={i}>
+          <span key={i} className="block">
             {line}
-            {i < lines.length - 1 && <br />}
-          </React.Fragment>
+          </span>
         ))}
       </h1>
     );
   }
-  
+
   return (
     <h1 
       ref={ref}
       className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 leading-[1.1] ${className}`}
     >
       {lines.map((line, lineIndex) => (
-        <React.Fragment key={lineIndex}>
-          <span className="inline-block">
-            {line.split('').map((char, charIndex) => (
-              <LineChar
-                key={`${lineIndex}-${charIndex}`}
-                char={char}
-                isScrambling={isScrambling}
-                hasBeenViewed={hasBeenViewed}
-                delay={charIndex * 0.02}
-                lineIndex={lineIndex}
-              />
-            ))}
-          </span>
-          {lineIndex < lines.length - 1 && <br />}
-        </React.Fragment>
+        <span key={lineIndex} className="block whitespace-pre">
+          {line.split('').map((char, charIndex) => (
+            <CharReveal
+              key={`${lineIndex}-${charIndex}`}
+              char={char}
+              delay={charIndex * 0.03 + (lineIndex * 0.15)}
+              isInView={isInView}
+              speed={speed}
+              maxIterations={maxIterations}
+            />
+          ))}
+        </span>
       ))}
     </h1>
   );
 }
 
-interface LineCharProps {
+interface CharRevealProps {
   char: string;
-  isScrambling: boolean;
-  hasBeenViewed: boolean;
   delay: number;
-  lineIndex: number;
+  isInView: boolean;
+  speed: number;
+  maxIterations: number;
 }
 
-function LineChar({ char, isScrambling, hasBeenViewed, delay, lineIndex }: LineCharProps) {
-  const [displayChar, setDisplayChar] = useState(char);
-  
+function CharReveal({ 
+  char, 
+  delay, 
+  isInView, 
+  speed, 
+  maxIterations
+}: CharRevealProps) {
+  const [displayChar, setDisplayChar] = useState<string>(char);
+  const [isScrambling, setIsScrambling] = useState<boolean>(false);
+  const hasCompletedRef = useRef<boolean>(false);
+
   useEffect(() => {
-    if (!isScrambling) {
-      setDisplayChar(char);
-      return;
-    }
-    
-    // Fast character scramble cycle
-    let iterations = 0;
-    const maxIterations = 3; // Brief scramble
-    
-    const interval = setInterval(() => {
-      if (iterations >= maxIterations) {
-        setDisplayChar(char);
-        clearInterval(interval);
+    if (!isInView || hasCompletedRef.current) return;
+
+    // Initial scramble animation
+    setIsScrambling(true);
+    let iteration = 0;
+    let timeoutId: number;
+
+    const scramble = () => {
+      if (char === ' ') {
+        setDisplayChar(' ');
+        setIsScrambling(false);
+        hasCompletedRef.current = true;
         return;
       }
-      
-      // Scramble: use similar char or random nearby
-      if (char !== ' ') {
-        const random = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-        setDisplayChar(random);
+
+      if (iteration < maxIterations) {
+        // Scramble with random characters
+        const randomChar = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+        setDisplayChar(randomChar);
+        iteration++;
+        timeoutId = window.setTimeout(scramble, speed);
+      } else {
+        // Reveal the actual character
+        setDisplayChar(char);
+        setIsScrambling(false);
+        hasCompletedRef.current = true;
       }
-      
-      iterations++;
-    }, 35); // Fast tick: 35ms per frame
-    
-    return () => clearInterval(interval);
-  }, [isScrambling, char]);
-  
-  // Initial load animation (STATE 1)
-  if (!hasBeenViewed) {
-    return (
-      <motion.span
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.4,
-          delay: delay + (lineIndex * 0.1),
-          ease: [0.22, 1, 0.36, 1]
-        }}
-        className="inline-block"
-      >
-        {char}
-      </motion.span>
-    );
-  }
-  
-  // Cryptic re-entry animation (STATE 3)
-  if (isScrambling) {
-    return (
-      <motion.span
-        animate={{
-          opacity: [1, 0.92, 0.96, 1],
-          x: [0, Math.random() * 2 - 1, Math.random() * 2 - 1, 0],
-          y: [0, Math.random() * 1.5 - 0.75, Math.random() * 1.5 - 0.75, 0]
-        }}
-        transition={{
-          duration: 0.28,
-          ease: [0.16, 1, 0.3, 1],
-          times: [0, 0.3, 0.7, 1]
-        }}
-        className="inline-block text-zinc-400"
-      >
-        {displayChar}
-      </motion.span>
-    );
-  }
-  
-  // Stable state
+    };
+
+    // Start animation after delay
+    timeoutId = window.setTimeout(scramble, delay * 1000);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isInView, char, delay, speed, maxIterations]);
+
   return (
     <motion.span
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="inline-block text-zinc-900"
+      className={char === ' ' ? 'inline-block w-2' : 'inline-block'}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ 
+        opacity: isScrambling ? [0.4, 0.8, 0.4] : 1,
+        y: 0
+      }}
+      transition={{
+        opacity: {
+          duration: speed / 1000,
+          repeat: isScrambling ? Infinity : 0,
+          ease: 'easeInOut'
+        },
+        y: {
+          duration: 0.4,
+          delay: delay,
+          ease: [0.22, 1, 0.36, 1]
+        }
+      }}
     >
       {displayChar}
     </motion.span>
