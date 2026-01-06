@@ -7,48 +7,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/Components/ui/accordion';
-
-const experience = [
-  {
-    role: 'Senior Software Engineering Intern - iOS Development',
-    company: 'Chamberly AB',
-    period: 'Dec 2023 — Sep 2024',
-    description: 'Optimized app performance and navigation flow, reducing user steps by 27% and latency by 12%. Structured backend systems for reliable Apple Push Notifications, increasing user retention by 22%. Integrated feature updates in an Agile environment, contributing to a 19% increase in Monthly Active Users (MAU).'
-  },
-  {
-    role: 'Summer Research Assistant',
-    company: 'VIT Wireless and Communication Lab',
-    period: 'May 2025 — July 2025',
-    description: 'Validated fundamental Wireless and Mobile Communication (WMC) concepts through lab experiments, focusing on signal propagation models and modulation techniques. Spearheaded research synthesis for optical communication studies with international research teams to align simulation frameworks and validate results.'
-  }
-];
-
-const skills = [
-  { category: 'RF & Simulation Tools', items: ['Cadence Virtuoso', 'Cadence AWR', 'LTSpice', 'ModelSim', 'NI Multisim', 'NetSim', 'Optiwave', 'MATLAB'] },
-  { category: 'Languages', items: ['Python', 'Java', 'R', 'MATLAB', 'Embedded C', 'C++', 'Verilog HDL', 'Swift', 'UIKit', 'Assembly'] },
-  { category: 'Core Domains', items: ['Free Space Optical Communications (FSO)', '5G-beyond Networks', 'Signal Processing', 'Machine Learning', 'AI', 'Deep Learning'] },
-  { category: 'DevOps & Cloud', items: ['Docker', 'Git', 'CI/CD', 'Jenkins', 'AWS', 'GCP'] }
-];
-
-const principles = [
-  {
-    number: '01',
-    title: 'Physics-informed approaches',
-    description: 'Every simulation and model respects the underlying principles of electromagnetic propagation. I prioritize accuracy and physical realism over computational convenience.'
-  },
-  {
-    number: '02',
-    title: 'Simulation-to-reality bridge',
-    description: 'Research should translate to practical applications. I focus on reducing the gap between theoretical models and real-world deployment in wireless systems.'
-  },
-  {
-    number: '03',
-    title: 'AI-assisted signal processing',
-    description: 'Combining deep learning with classical signal processing techniques to solve complex problems in optical and wireless communications.'
-  }
-];
+import { useResume } from '@/contexts/ResumeContext';
+import { getResumeData } from '@/data/resumeData';
 
 export default function About() {
+  const { resumeType } = useResume();
+  const resumeData = getResumeData(resumeType);
+  const { experience, skills, principles, about } = resumeData;
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero */}
@@ -87,7 +52,7 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              Final-year Electronics and Communication Engineering student researching Free Space Optical communications and beyond 5G networks.
+              {about.title}
             </motion.h1>
             
             <motion.div
@@ -96,15 +61,9 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p>
-                I'm pursuing proficiency in <strong>Free Space Optical (FSO)</strong> communications and <strong>Telecommunication Networks</strong>, currently exploring opportunities in MATLAB/Python-based simulation frameworks using AI-assisted signal processing for OAM-enabled beyond 5G wireless development.
-              </p>
-              <p>
-                My research focuses on physics-informed machine learning approaches that bridge simulation and reality. I develop deep learning models for signal recovery, reinforcement learning frameworks for network optimization, and comprehensive datasets that advance the field of optical and wireless communications.
-              </p>
-              <p>
-                Currently studying at <strong>Vellore Institute of Technology</strong>, expected to graduate in August 2026. I'm eager to learn from industry experts and contribute to solving real-world problems in telecommunications and optical communications.
-              </p>
+              {about.bio.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </motion.div>
           </div>
         </div>

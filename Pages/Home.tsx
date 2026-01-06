@@ -8,43 +8,13 @@ import { CrypticText } from '@/Components/ui/CrypticText';
 import { InevitableText } from '@/Components/ui/InevitableText';
 import { ScrollReveal } from '@/Components/ui/ScrollReveal';
 import { ArrowRight } from 'lucide-react';
-
-const selectedProjects = [
-  {
-    title: 'BeamLabs: Optical Beam Modeling Suite',
-    description: 'Object-Oriented MATLAB library to model 14 optical beam types for Quantum Optics and RF communication systems research.',
-    role: 'Research Developer',
-    year: '2024-2025',
-    slug: 'beamlabs',
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&auto=format&fit=crop&q=80'
-  },
-  {
-    title: 'OAM-Multiplexed Beam Recovery via Deep Learning',
-    description: 'ResNet-18 CNN receiver to recover QPSK symbols from intensity-only optical images, reducing link complexity by 40%.',
-    role: 'Research Engineer',
-    year: '2025',
-    slug: 'oam-beam-recovery',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80'
-  },
-  {
-    title: 'RL Framework for 5G-beyond Networks',
-    description: 'Physics-informed DQN agent with 52-dimensional action space for optimal OAM mode switching, achieving sub-0.1ms latency.',
-    role: 'Research Engineer',
-    year: '2025-Present',
-    slug: 'rl-5g-framework',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80'
-  },
-  {
-    title: '6G OAM-THz Channel Dataset',
-    description: 'Published first physics-based dataset with 250k+ samples for OAM beam communications at sub-Terahertz frequencies.',
-    role: 'Research Contributor',
-    year: '2025',
-    slug: '6g-dataset',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80'
-  }
-];
+import { useResume } from '@/contexts/ResumeContext';
+import { getResumeData } from '@/data/resumeData';
 
 export default function Home() {
+  const { resumeType } = useResume();
+  const resumeData = getResumeData(resumeType);
+  const selectedProjects = resumeData.projects.slice(0, 4);
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero Section */}
@@ -56,11 +26,11 @@ export default function Home() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
-              Research Engineer & Developer
+              {resumeData.hero.tagline}
             </p>
           </motion.div>
           
-          <InevitableText />
+          <InevitableText lines={resumeData.hero.mainText} />
           
           {/* Cryptic Text - Subtle cognitive hook */}
           <motion.div
@@ -78,7 +48,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            Exploring Free Space Optical communications and 5G-beyond networks through AI-assisted signal processing and simulation frameworks.
+            {resumeData.hero.description}
           </motion.p>
           
           <motion.div

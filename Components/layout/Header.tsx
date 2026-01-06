@@ -4,6 +4,7 @@ import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/Components/ui/ThemeToggle';
+import { ResumeSelector } from '@/Components/ui/ResumeSelector';
 
 const navLinks = [
   { name: 'Work', path: 'Work' },
@@ -38,13 +39,18 @@ export default function Header() {
       >
         <nav className="max-w-6xl mx-auto px-6 md:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <Link to={createPageUrl('Home')} className="relative group">
-              <span className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
-                Srivatsa Davuluri
-              </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 dark:bg-zinc-100 group-hover:w-full transition-all duration-300" />
-            </Link>
+            {/* Logo & Resume Selector */}
+            <div className="flex items-center gap-4">
+              <Link to={createPageUrl('Home')} className="relative group">
+                <span className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
+                  Srivatsa Davuluri
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 dark:bg-zinc-100 group-hover:w-full transition-all duration-300" />
+              </Link>
+              <div className="hidden md:block">
+                <ResumeSelector />
+              </div>
+            </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
@@ -68,6 +74,7 @@ export default function Header() {
             
             {/* Mobile Menu Button & Theme Toggle */}
             <div className="flex items-center gap-2 md:hidden">
+              <ResumeSelector />
               <ThemeToggle />
               <button 
                 className="p-2 -mr-2"

@@ -1,22 +1,24 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const lines = [
+// Character pool for scrambling
+const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+const defaultLines = [
   'Interested in optical',
   'communications and',
   'beyond 5G networks.'
 ];
 
-// Character pool for scrambling
-const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-
 interface InevitableTextProps {
+  lines?: string[];
   className?: string;
   speed?: number;
   maxIterations?: number;
 }
 
 export function InevitableText({ 
+  lines = defaultLines,
   className = '', 
   speed = 30,
   maxIterations = 8,
