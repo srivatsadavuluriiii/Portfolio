@@ -4,8 +4,8 @@ import { useResume } from '@/contexts/ResumeContext';
 import { useState, useRef, useEffect } from 'react';
 
 const resumeOptions = [
-  { value: 'wireless' as const, label: 'Wireless' },
-  { value: 'ai-ml' as const, label: 'AI/ML' },
+  { value: 'wireless' as const, label: 'Wireless Communications' },
+  { value: 'ai-ml' as const, label: 'AI/ML - iOS Development' },
 ] as const;
 
 export function ResumeSelector() {
