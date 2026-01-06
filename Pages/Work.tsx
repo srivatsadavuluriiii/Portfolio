@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { ProjectCard, ProjectListItem } from '@/Components/ui/ProjectCard';
@@ -10,8 +10,9 @@ import { getResumeData } from '@/data/resumeData';
 export default function Work() {
   const [viewMode, setViewMode] = useState('grid');
   const { resumeType } = useResume();
-  const resumeData = getResumeData(resumeType);
-  const projects = resumeData.projects;
+  // Memoize resumeData to prevent unnecessary recalculations
+  const resumeData = useMemo(() => getResumeData(resumeType), [resumeType]);
+  const projects = useMemo(() => resumeData.projects, [resumeData.projects]);
   
   return (
     <div className="pt-16 md:pt-20">

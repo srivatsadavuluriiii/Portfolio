@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
@@ -13,8 +14,9 @@ import { getResumeData } from '@/data/resumeData';
 
 export default function Home() {
   const { resumeType } = useResume();
-  const resumeData = getResumeData(resumeType);
-  const selectedProjects = resumeData.projects.slice(0, 4);
+  // Memoize resumeData to prevent unnecessary recalculations
+  const resumeData = useMemo(() => getResumeData(resumeType), [resumeType]);
+  const selectedProjects = useMemo(() => resumeData.projects.slice(0, 4), [resumeData.projects]);
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero Section */}

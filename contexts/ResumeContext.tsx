@@ -1,10 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useCallback, useRef, startTransition } from 'react';
 
 export type ResumeType = 'wireless' | 'ai-ml';
 
 interface ResumeContextType {
   resumeType: ResumeType;
   setResumeType: (type: ResumeType) => void;
+  isTransitioning: boolean;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
@@ -20,16 +21,38 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     }
     return 'wireless'; // Default to wireless
   });
+  
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimeoutRef = useRef<number | null>(null);
 
-  const handleSetResumeType = (type: ResumeType) => {
-    setResumeType(type);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('resumeType', type);
+  const handleSetResumeType = useCallback((type: ResumeType) => {
+    // Prevent rapid successive changes
+    if (type === resumeType) return;
+    
+    // Cancel any pending transition
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
     }
-  };
+    
+    setIsTransitioning(true);
+    
+    // Use startTransition to mark this as non-urgent, allowing React to batch updates
+    startTransition(() => {
+      setResumeType(type);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('resumeType', type);
+      }
+    });
+    
+    // Clear transitioning state after a short delay
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      setIsTransitioning(false);
+      transitionTimeoutRef.current = null;
+    }, 300);
+  }, [resumeType]);
 
   return (
-    <ResumeContext.Provider value={{ resumeType, setResumeType: handleSetResumeType }}>
+    <ResumeContext.Provider value={{ resumeType, setResumeType: handleSetResumeType, isTransitioning }}>
       {children}
     </ResumeContext.Provider>
   );

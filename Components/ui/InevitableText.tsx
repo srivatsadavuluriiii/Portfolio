@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useResume } from '@/contexts/ResumeContext';
 
 // Character pool for scrambling
 const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
@@ -25,6 +26,7 @@ export function InevitableText({
   ...props 
 }: InevitableTextProps) {
   const ref = useRef<HTMLHeadingElement>(null);
+  const { resumeType } = useResume(); // Track resume changes to reset animations
   // Remove 'once: true' to allow re-animation when lines change
   const isInView = useInView(ref, { margin: '-10%', once: false });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -39,8 +41,8 @@ export function InevitableText({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Create a stable key based on lines content to force re-render when lines change
-  const linesKey = lines.join('|');
+  // Create a stable key based on lines content AND resumeType to force re-render when either changes
+  const linesKey = `${resumeType}-${lines.join('|')}`;
 
   // Reduced motion: simple display
   if (prefersReducedMotion) {
@@ -103,10 +105,20 @@ function CharReveal({
   const [isScrambling, setIsScrambling] = useState<boolean>(false);
   const hasCompletedRef = useRef<boolean>(false);
   const prevCharRef = useRef<string>(char);
+  const timeoutRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Reset if character changed (for resume switching)
+    // Cancel any pending animations when character changes
     if (prevCharRef.current !== char) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       hasCompletedRef.current = false;
       setDisplayChar(char);
       setIsScrambling(false);
@@ -118,9 +130,19 @@ function CharReveal({
     // Initial scramble animation
     setIsScrambling(true);
     let iteration = 0;
-    let timeoutId: number;
+    let startTime: number | null = null;
 
-    const scramble = () => {
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const targetDelay = delay * 1000;
+
+      if (elapsed < targetDelay) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      // Start scrambling after delay
       if (char === ' ') {
         setDisplayChar(' ');
         setIsScrambling(false);
@@ -129,24 +151,30 @@ function CharReveal({
       }
 
       if (iteration < maxIterations) {
-        // Scramble with random characters
         const randomChar = scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
         setDisplayChar(randomChar);
         iteration++;
-        timeoutId = window.setTimeout(scramble, speed);
+        timeoutRef.current = window.setTimeout(() => {
+          animationFrameRef.current = requestAnimationFrame(animate);
+        }, speed);
       } else {
-        // Reveal the actual character
         setDisplayChar(char);
         setIsScrambling(false);
         hasCompletedRef.current = true;
       }
     };
 
-    // Start animation after delay
-    timeoutId = window.setTimeout(scramble, delay * 1000);
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     };
   }, [isInView, char, delay, speed, maxIterations]);
 

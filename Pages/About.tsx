@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { FadeIn } from '@/Components/ui/AnimatedText';
@@ -12,7 +13,8 @@ import { getResumeData } from '@/data/resumeData';
 
 export default function About() {
   const { resumeType } = useResume();
-  const resumeData = getResumeData(resumeType);
+  // Memoize resumeData to prevent unnecessary recalculations
+  const resumeData = useMemo(() => getResumeData(resumeType), [resumeType]);
   const { experience, skills, principles, about } = resumeData;
   return (
     <div className="pt-16 md:pt-20">
