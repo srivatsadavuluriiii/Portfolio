@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const lines = [
-  'Interests in optical',
+  'Interested in optical',
   'communications and',
   'beyond 5G networks.'
 ];
