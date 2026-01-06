@@ -112,8 +112,8 @@ const projectsData: Record<ProjectSlug, ProjectData> = {
     duration: 'Oct 2025 — Present',
     heroImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80',
     overview: {
-      problem: '5G-beyond networks require dynamic optimization of OAM modes based on environment and signal conditions, but traditional approaches struggle to meet 6G KPI targets for latency and throughput efficiency.',
-      solution: 'Developed a physics-aware RL framework complying with 6G KPI targets, optimally switching OAM modes to current environment and signal conditions. Investigated Physics-Informed DQN agent with 52-dimensional action space, integrating ITU-R/IEEE standards for THz propagation (26.5-300 GHz) and channel capacity.',
+      problem: '5G-beyond networks require dynamic optimization of OAM modes based on environment and signal conditions, but traditional approaches struggle to meet KPI targets for latency and throughput efficiency.',
+      solution: 'Developed a physics-aware RL framework complying with KPI targets, optimally switching OAM modes to current environment and signal conditions. Investigated Physics-Informed DQN agent with 52-dimensional action space, integrating ITU-R/IEEE standards for THz propagation (26.5-300 GHz) and channel capacity.',
       impact: 'Achieved sub-0.1 ms latency while maximizing throughput efficiency. Currently achieving 80+% prediction accuracy across indoor and outdoor propagation scenarios. Exploring transfer learning to reduce training complexity by 60% for lossless compliance.'
     },
     process: [
@@ -148,8 +148,8 @@ const projectsData: Record<ProjectSlug, ProjectData> = {
     duration: 'Aug 2025',
     heroImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80',
     overview: {
-      problem: 'Lack of comprehensive, physics-based datasets for OAM beam communications at sub-Terahertz/mmWave frequencies (300-600 GHz) that meet 6G specifications and support Deep Reinforcement Learning research.',
-      solution: 'Published the first physics-based dataset with 250k+ realistic samples for OAM beam communications. Simulated 33 physics parameters including atmospheric turbulence and hardware impairments to meet 6G specifications and ITU-R IMT-2030 compliance.',
+      problem: 'Lack of comprehensive, physics-based datasets for OAM beam communications at sub-Terahertz/mmWave frequencies (300-600 GHz) that meet beyond 5G specifications and support Deep Reinforcement Learning research.',
+      solution: 'Published the first physics-based dataset with 250k+ realistic samples for OAM beam communications. Simulated 33 physics parameters including atmospheric turbulence and hardware impairments to meet specifications and ITU-R IMT-2030 compliance.',
       impact: 'Dataset published on IEEE Dataport (DOI: 10.21227/ej85-xp25) and TechRxiv. Validated on machine learning tasks achieving sub-80% prediction accuracy for throughput, latency, and energy efficiency. Established benchmark for Deep Reinforcement Learning algorithms in dynamic environments.'
     },
     process: [
@@ -174,7 +174,7 @@ const projectsData: Record<ProjectSlug, ProjectData> = {
       'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&auto=format&fit=crop&q=80'
     ],
-    reflection: 'Creating this dataset required balancing physical accuracy with computational feasibility. The result is a resource that enables reproducible research in 6G communications while respecting the underlying physics of electromagnetic propagation.'
+    reflection: 'Creating this dataset required balancing physical accuracy with computational feasibility. The result is a resource that enables reproducible research in beyond 5G communications while respecting the underlying physics of electromagnetic propagation.'
   }
 };
 

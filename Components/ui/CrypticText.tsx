@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const phrases = [
   'Physics-informed AI for wireless systems',
-  'Simulation frameworks for 6G research',
+  'Simulation frameworks for 5G research',
   'OAM multiplexing in turbulent channels',
   'Deep learning for signal recovery',
   'Reinforcement learning for network optimization',

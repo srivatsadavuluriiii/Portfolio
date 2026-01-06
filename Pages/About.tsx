@@ -63,8 +63,8 @@ export default function About() {
           >
             <div className="aspect-[4/5] bg-zinc-100 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80"
-                alt="Portrait"
+                src="/portrait.png"
+                alt="Srivatsa Davuluri"
                 className="w-full h-full object-cover grayscale"
               />
             </div>
