@@ -47,6 +47,7 @@ export default function About() {
             </motion.p>
             
             <motion.h1
+              key={`${resumeType}-title`}
               className="text-3xl md:text-4xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.2] mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -56,13 +57,14 @@ export default function About() {
             </motion.h1>
             
             <motion.div
+              key={`${resumeType}-bio`}
               className="space-y-6 text-zinc-600 dark:text-zinc-300 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               {about.bio.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+                <p key={`${resumeType}-${index}`}>{paragraph}</p>
               ))}
             </motion.div>
           </div>
@@ -122,8 +124,8 @@ export default function About() {
         
         <Accordion type="single" collapsible className="w-full">
           {skills.map((skill, index) => (
-            <FadeIn key={skill.category} delay={index * 0.1}>
-              <AccordionItem value={skill.category} className="border-zinc-200 dark:border-zinc-800">
+            <FadeIn key={`${resumeType}-${skill.category}-${index}`} delay={index * 0.1}>
+              <AccordionItem value={`${resumeType}-${skill.category}`} className="border-zinc-200 dark:border-zinc-800">
                 <AccordionTrigger className="text-lg font-medium text-zinc-900 dark:text-zinc-100 hover:no-underline py-6">
                   {skill.category}
                 </AccordionTrigger>
@@ -131,7 +133,7 @@ export default function About() {
                   <div className="flex flex-wrap gap-3">
                     {skill.items.map((item) => (
                       <span 
-                        key={item}
+                        key={`${resumeType}-${skill.category}-${item}`}
                         className="px-4 py-2 text-sm text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-full"
                       >
                         {item}
@@ -169,8 +171,9 @@ export default function About() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {principles.map((principle, index) => (
-            <FadeIn key={principle.number} delay={index * 0.15}>
+            <FadeIn key={`${resumeType}-${principle.number}-${index}`} delay={index * 0.15}>
               <motion.div 
+                key={`${resumeType}-principle-${index}`}
                 className="space-y-4"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}

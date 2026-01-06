@@ -43,6 +43,7 @@ export default function Home() {
           </motion.div>
           
           <motion.p
+            key={`${resumeType}-description`}
             className="mt-6 text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,7 +106,7 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {selectedProjects.map((project, index) => (
-            <ProjectCard key={project.slug} {...project} index={index} />
+            <ProjectCard key={`${resumeType}-${project.slug}`} {...project} index={index} />
           ))}
         </div>
       </Section>

@@ -15,7 +15,8 @@ export function ScrollReveal({
   disabled = false 
 }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  // Remove 'once: true' to allow re-animation when content changes
+  const isInView = useInView(ref, { once: false, margin: '-50px' });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   
   useEffect(() => {
@@ -35,6 +36,7 @@ export function ScrollReveal({
   return (
     <motion.div
       ref={ref}
+      key={typeof children === 'string' ? children : JSON.stringify(children)}
       initial={{ opacity: 0, y: 12 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
       transition={{
@@ -61,7 +63,8 @@ export function ScrollRevealStagger({
   staggerDelay = 0.08 
 }: ScrollRevealStaggerProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  // Remove 'once: true' to allow re-animation when content changes
+  const isInView = useInView(ref, { once: false, margin: '-50px' });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   
   useEffect(() => {
@@ -78,10 +81,14 @@ export function ScrollRevealStagger({
     return <div ref={ref} className={className}>{children}</div>;
   }
   
+  // Create a key based on children to force re-render when content changes
+  const childrenKey = React.Children.count(children);
+  
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} key={childrenKey} className={className}>
       {React.Children.map(children, (child, index) => (
         <motion.div
+          key={`${childrenKey}-${index}`}
           initial={{ opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           transition={{

@@ -28,6 +28,7 @@ export default function Work() {
           </motion.p>
           
           <motion.h1
+            key={`${resumeType}-work-title`}
             className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,6 +40,7 @@ export default function Work() {
           </motion.h1>
           
           <motion.p
+            key={`${resumeType}-work-description`}
             className="mt-6 text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,7 +96,7 @@ export default function Work() {
             transition={{ duration: 0.4 }}
           >
             {projects.map((project, index) => (
-              <ProjectCard key={project.slug} {...project} index={index} />
+              <ProjectCard key={`${resumeType}-${project.slug}`} {...project} index={index} />
             ))}
           </motion.div>
         )}
@@ -107,7 +109,7 @@ export default function Work() {
             transition={{ duration: 0.4 }}
           >
             {projects.map((project, index) => (
-              <ProjectListItem key={project.slug} {...project} index={index} />
+              <ProjectListItem key={`${resumeType}-${project.slug}`} {...project} index={index} />
             ))}
           </motion.div>
         )}

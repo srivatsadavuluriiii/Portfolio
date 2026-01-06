@@ -25,7 +25,8 @@ export function InevitableText({
   ...props 
 }: InevitableTextProps) {
   const ref = useRef<HTMLHeadingElement>(null);
-  const isInView = useInView(ref, { margin: '-10%', once: true });
+  // Remove 'once: true' to allow re-animation when lines change
+  const isInView = useInView(ref, { margin: '-10%', once: false });
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   
   useEffect(() => {
@@ -38,16 +39,20 @@ export function InevitableText({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  // Create a stable key based on lines content to force re-render when lines change
+  const linesKey = lines.join('|');
+
   // Reduced motion: simple display
   if (prefersReducedMotion) {
     return (
       <h1 
         ref={ref} 
-        className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 leading-[1.1] ${className}`}
+        key={linesKey}
+        className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1] ${className}`}
         {...props}
       >
         {lines.map((line, i) => (
-          <span key={i} className="block">
+          <span key={`${linesKey}-${i}`} className="block">
             {line}
           </span>
         ))}
@@ -58,13 +63,14 @@ export function InevitableText({
   return (
     <h1 
       ref={ref}
-      className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 leading-[1.1] ${className}`}
+      key={linesKey}
+      className={`text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1] ${className}`}
     >
       {lines.map((line, lineIndex) => (
-        <span key={lineIndex} className="block whitespace-pre">
+        <span key={`${linesKey}-line-${lineIndex}`} className="block whitespace-pre">
           {line.split('').map((char, charIndex) => (
             <CharReveal
-              key={`${lineIndex}-${charIndex}`}
+              key={`${linesKey}-${lineIndex}-${charIndex}-${char}`}
               char={char}
               delay={charIndex * 0.03 + (lineIndex * 0.15)}
               isInView={isInView}
@@ -96,8 +102,17 @@ function CharReveal({
   const [displayChar, setDisplayChar] = useState<string>(char);
   const [isScrambling, setIsScrambling] = useState<boolean>(false);
   const hasCompletedRef = useRef<boolean>(false);
+  const prevCharRef = useRef<string>(char);
 
   useEffect(() => {
+    // Reset if character changed (for resume switching)
+    if (prevCharRef.current !== char) {
+      hasCompletedRef.current = false;
+      setDisplayChar(char);
+      setIsScrambling(false);
+      prevCharRef.current = char;
+    }
+
     if (!isInView || hasCompletedRef.current) return;
 
     // Initial scramble animation

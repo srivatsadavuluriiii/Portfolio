@@ -112,11 +112,15 @@ export function FadeIn({ children, className = '', delay = 0, direction = 'up' }
     right: { y: 0, x: -30 }
   };
   
+  // Create a key based on children to force re-render when content changes
+  const childrenKey = typeof children === 'string' ? children : JSON.stringify(children);
+  
   return (
     <motion.div
+      key={childrenKey}
       initial={{ opacity: 0, ...directions[direction] }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: false, margin: '-50px' }}
       transition={{ 
         duration: 0.7, 
         delay,

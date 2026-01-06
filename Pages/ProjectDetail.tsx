@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
@@ -205,26 +206,36 @@ const defaultProject = {
 
 export default function ProjectDetail() {
   const { resumeType } = useResume();
-  const resumeData = getResumeData(resumeType);
-  const urlParams = new URLSearchParams(window.location.search);
-  const slug = urlParams.get('slug') || 'default';
+  const [searchParams] = useSearchParams();
+  const slug = searchParams.get('slug') || 'default';
   
-  // Find project in current resume data
-  const resumeProject = resumeData.projects.find(p => p.slug === slug);
-  
-  // Convert resume project to ProjectData format if found
-  const project: ProjectData = resumeProject && resumeProject.overview ? {
-    title: resumeProject.title,
-    role: resumeProject.role,
-    year: resumeProject.year,
-    client: resumeProject.client || 'Project',
-    duration: resumeProject.duration || resumeProject.year,
-    heroImage: resumeProject.heroImage || resumeProject.image || 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&auto=format&fit=crop&q=80',
-    overview: resumeProject.overview,
-    process: resumeProject.process || [],
-    images: resumeProject.images || [],
-    reflection: resumeProject.reflection || 'This project represents a significant contribution to the field.',
-  } : (slug in projectsData ? projectsData[slug as ProjectSlug] : defaultProject);
+  // Get resume data and find project - use useMemo to recalculate when resumeType or slug changes
+  const project: ProjectData = useMemo(() => {
+    const resumeData = getResumeData(resumeType);
+    const resumeProject = resumeData.projects.find(p => p.slug === slug);
+    
+    if (resumeProject && resumeProject.overview) {
+      return {
+        title: resumeProject.title,
+        role: resumeProject.role,
+        year: resumeProject.year,
+        client: resumeProject.client || 'Project',
+        duration: resumeProject.duration || resumeProject.year,
+        heroImage: resumeProject.heroImage || resumeProject.image || 'https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1200&auto=format&fit=crop&q=80',
+        overview: resumeProject.overview,
+        process: resumeProject.process || [],
+        images: resumeProject.images || [],
+        reflection: resumeProject.reflection || 'This project represents a significant contribution to the field.',
+      };
+    }
+    
+    // Fallback to legacy projectsData (for backward compatibility)
+    if (slug in projectsData) {
+      return projectsData[slug as ProjectSlug];
+    }
+    
+    return defaultProject;
+  }, [resumeType, slug]);
   
   return (
     <div className="pt-16 md:pt-20">
@@ -242,6 +253,7 @@ export default function ProjectDetail() {
       {/* Hero */}
       <Section size="default" background="white">
         <motion.div
+          key={`${resumeType}-${slug}-hero`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
