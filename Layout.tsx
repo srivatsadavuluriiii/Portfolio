@@ -10,7 +10,7 @@ interface LayoutProps {
 
 export default function Layout({ children, currentPageName }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-white text-zinc-900 antialiased">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased transition-colors duration-300">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
         
@@ -28,6 +28,11 @@ export default function Layout({ children, currentPageName }: LayoutProps) {
           color: #ffffff;
         }
         
+        .dark ::selection {
+          background-color: #fafafa;
+          color: #18181b;
+        }
+        
         /* Custom scrollbar */
         ::-webkit-scrollbar {
           width: 8px;
@@ -37,13 +42,25 @@ export default function Layout({ children, currentPageName }: LayoutProps) {
           background: #fafafa;
         }
         
+        .dark ::-webkit-scrollbar-track {
+          background: #18181b;
+        }
+        
         ::-webkit-scrollbar-thumb {
           background: #d4d4d8;
           border-radius: 4px;
         }
         
+        .dark ::-webkit-scrollbar-thumb {
+          background: #3f3f46;
+        }
+        
         ::-webkit-scrollbar-thumb:hover {
           background: #a1a1aa;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+          background: #52525b;
         }
         
         /* Smooth scroll */

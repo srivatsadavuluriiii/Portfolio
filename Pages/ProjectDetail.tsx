@@ -212,7 +212,7 @@ export default function ProjectDetail() {
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-6">
         <Link 
           to={createPageUrl('Work')}
-          className="inline-flex items-center text-sm text-zinc-500 hover:text-zinc-900 transition-colors duration-300 group"
+          className="inline-flex items-center text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300 group"
         >
           <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
           Back to Work
@@ -226,27 +226,27 @@ export default function ProjectDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-zinc-900 mb-8">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-8">
             {project.title}
           </h1>
           
           {/* Meta */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div>
-              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Role</p>
-              <p className="text-sm text-zinc-900">{project.role}</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500 mb-1">Role</p>
+              <p className="text-sm text-zinc-900 dark:text-zinc-100">{project.role}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Organization</p>
-              <p className="text-sm text-zinc-900">{project.client}</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500 mb-1">Organization</p>
+              <p className="text-sm text-zinc-900 dark:text-zinc-100">{project.client}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Duration</p>
-              <p className="text-sm text-zinc-900">{project.duration}</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500 mb-1">Duration</p>
+              <p className="text-sm text-zinc-900 dark:text-zinc-100">{project.duration}</p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 mb-1">Year</p>
-              <p className="text-sm text-zinc-900">{project.year}</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-zinc-400 dark:text-zinc-500 mb-1">Year</p>
+              <p className="text-sm text-zinc-900 dark:text-zinc-100">{project.year}</p>
             </div>
           </div>
         </motion.div>
@@ -259,7 +259,7 @@ export default function ProjectDetail() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="aspect-[16/9] bg-zinc-100 overflow-hidden">
+        <div className="aspect-[16/9] bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
           <img 
             src={project.heroImage} 
             alt={project.title}
@@ -272,7 +272,7 @@ export default function ProjectDetail() {
       <Section size="large" background="white">
         <div className="max-w-3xl">
           <FadeIn>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
               Overview
             </p>
           </FadeIn>
@@ -280,8 +280,8 @@ export default function ProjectDetail() {
           <div className="space-y-12">
             <FadeIn delay={0.1}>
               <div>
-                <h3 className="text-sm font-medium text-zinc-900 mb-3">The Problem</h3>
-                <p className="text-lg text-zinc-600 leading-relaxed">
+                <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">The Problem</h3>
+                <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   {project.overview.problem}
                 </p>
               </div>
@@ -289,8 +289,8 @@ export default function ProjectDetail() {
             
             <FadeIn delay={0.2}>
               <div>
-                <h3 className="text-sm font-medium text-zinc-900 mb-3">The Solution</h3>
-                <p className="text-lg text-zinc-600 leading-relaxed">
+                <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">The Solution</h3>
+                <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   {project.overview.solution}
                 </p>
               </div>
@@ -298,8 +298,8 @@ export default function ProjectDetail() {
             
             <FadeIn delay={0.3}>
               <div>
-                <h3 className="text-sm font-medium text-zinc-900 mb-3">The Impact</h3>
-                <p className="text-lg text-zinc-600 leading-relaxed">
+                <h3 className="text-sm font-medium text-zinc-900 dark:text-zinc-100 mb-3">The Impact</h3>
+                <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                   {project.overview.impact}
                 </p>
               </div>
@@ -311,7 +311,7 @@ export default function ProjectDetail() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -322,10 +322,10 @@ export default function ProjectDetail() {
       {/* Process */}
       <Section size="large" background="light">
         <FadeIn>
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
             Process
           </p>
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-12">
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-12">
             How we got there
           </h2>
         </FadeIn>
@@ -335,14 +335,14 @@ export default function ProjectDetail() {
             <FadeIn key={step.title} delay={index * 0.1}>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-zinc-400 font-mono">
+                  <span className="text-xs text-zinc-400 dark:text-zinc-500 font-mono">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="text-lg font-medium text-zinc-900">
+                  <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-zinc-600 leading-relaxed pl-8">
+                <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed pl-8">
                   {step.description}
                 </p>
               </div>
@@ -357,7 +357,7 @@ export default function ProjectDetail() {
           <div className="space-y-8">
             {project.images.map((image: string, index: number) => (
               <FadeIn key={index} delay={index * 0.1}>
-                <div className="aspect-[16/10] bg-zinc-100 overflow-hidden">
+                <div className="aspect-[16/10] bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
                   <img 
                     src={image} 
                     alt={`${project.title} visual ${index + 1}`}
@@ -374,10 +374,10 @@ export default function ProjectDetail() {
       <Section size="large" background="light">
         <div className="max-w-3xl">
           <FadeIn>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
               Reflection
             </p>
-            <blockquote className="text-xl md:text-2xl text-zinc-700 leading-relaxed font-light italic">
+            <blockquote className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed font-light italic">
               "{project.reflection}"
             </blockquote>
           </FadeIn>
@@ -389,13 +389,13 @@ export default function ProjectDetail() {
         <div className="flex justify-between items-center">
           <Link 
             to={createPageUrl('Work')}
-            className="text-sm text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+            className="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300"
           >
             ← All Projects
           </Link>
           <Link 
             to={createPageUrl('Contact')}
-            className="text-sm text-zinc-900 hover:text-zinc-600 transition-colors duration-300 flex items-center gap-1"
+            className="text-sm text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors duration-300 flex items-center gap-1"
           >
             Get in touch
             <ArrowUpRight className="w-4 h-4" />

@@ -53,7 +53,7 @@ export default function Work() {
       <Section size="default" background="white">
         <div className="max-w-3xl">
           <motion.p
-            className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-4"
+            className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -62,7 +62,7 @@ export default function Work() {
           </motion.p>
           
           <motion.h1
-            className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-[1.1]"
+            className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -71,7 +71,7 @@ export default function Work() {
           </motion.h1>
           
           <motion.p
-            className="mt-6 text-lg text-zinc-500 leading-relaxed"
+            className="mt-6 text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -84,7 +84,7 @@ export default function Work() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -99,7 +99,7 @@ export default function Work() {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 transition-colors duration-200 ${
-                viewMode === 'grid' ? 'text-zinc-900' : 'text-zinc-400 hover:text-zinc-600'
+                viewMode === 'grid' ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'
               }`}
             >
               <LayoutGrid className="w-5 h-5" />
@@ -107,7 +107,7 @@ export default function Work() {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 transition-colors duration-200 ${
-                viewMode === 'list' ? 'text-zinc-900' : 'text-zinc-400 hover:text-zinc-600'
+                viewMode === 'list' ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300'
               }`}
             >
               <List className="w-5 h-5" />
@@ -147,13 +147,13 @@ export default function Work() {
       <Section size="default" background="white">
         <div className="text-center">
           <FadeIn>
-            <p className="text-zinc-500 mb-4">
+            <p className="text-zinc-500 dark:text-zinc-400 mb-4">
               Looking for something specific?
             </p>
-            <p className="text-lg text-zinc-900">
+            <p className="text-lg text-zinc-900 dark:text-zinc-100">
               <a 
                 href="mailto:connect.davuluri@gmail.com"
-                className="border-b border-zinc-300 hover:border-zinc-900 transition-colors duration-300"
+                className="border-b border-zinc-300 dark:border-zinc-600 hover:border-zinc-900 dark:hover:border-zinc-100 transition-colors duration-300"
               >
                 Get in touch
               </a>

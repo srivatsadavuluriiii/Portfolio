@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from '@/Components/ui/ThemeToggle';
 
 const navLinks = [
   { name: 'Work', path: 'Work' },
@@ -27,7 +28,9 @@ export default function Header() {
     <>
       <motion.header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-white/95 backdrop-blur-sm border-b border-zinc-200' : 'bg-transparent'
+          scrolled 
+            ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-200 dark:border-zinc-800' 
+            : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -37,10 +40,10 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="relative group">
-              <span className="text-lg font-medium tracking-tight text-zinc-900">
+              <span className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
                 Srivatsa Davuluri
               </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 dark:bg-zinc-100 group-hover:w-full transition-all duration-300" />
             </Link>
             
             {/* Desktop Navigation */}
@@ -49,30 +52,34 @@ export default function Header() {
                 <Link 
                   key={link.path}
                   to={createPageUrl(link.path)}
-                  className="relative group text-sm text-zinc-600 hover:text-zinc-900 transition-colors duration-300"
+                  className="relative group text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300"
                 >
                   {link.name}
                   <motion.span 
-                    className="absolute -bottom-1 left-0 h-px bg-zinc-900"
+                    className="absolute -bottom-1 left-0 h-px bg-zinc-900 dark:bg-zinc-100"
                     initial={{ width: 0 }}
                     whileHover={{ width: '100%' }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </Link>
               ))}
+              <ThemeToggle />
             </div>
             
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2 -mr-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5 text-zinc-900" />
-              ) : (
-                <Menu className="w-5 h-5 text-zinc-900" />
-              )}
-            </button>
+            {/* Mobile Menu Button & Theme Toggle */}
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
+              <button 
+                className="p-2 -mr-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+                ) : (
+                  <Menu className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+                )}
+              </button>
+            </div>
           </div>
         </nav>
       </motion.header>
@@ -81,7 +88,7 @@ export default function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-white md:hidden"
+            className="fixed inset-0 z-40 bg-white dark:bg-zinc-950 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -98,7 +105,7 @@ export default function Header() {
                 >
                   <Link 
                     to={createPageUrl(link.path)}
-                    className="text-2xl font-medium text-zinc-900"
+                    className="text-2xl font-medium text-zinc-900 dark:text-zinc-100"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}

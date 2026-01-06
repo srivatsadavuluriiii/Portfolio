@@ -55,7 +55,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
               Research Engineer & Developer
             </p>
           </motion.div>
@@ -73,7 +73,7 @@ export default function Home() {
           </motion.div>
           
           <motion.p
-            className="mt-6 text-lg md:text-xl text-zinc-500 max-w-2xl leading-relaxed"
+            className="mt-6 text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -90,7 +90,7 @@ export default function Home() {
             <Link to={createPageUrl('Work')}>
               <Button 
                 variant="outline" 
-                className="group h-12 px-6 rounded-none border-zinc-900 text-zinc-900 hover:bg-zinc-900 hover:text-white transition-all duration-300"
+                className="group h-12 px-6 rounded-none border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-900 dark:hover:bg-zinc-100 hover:text-white dark:hover:text-zinc-900 transition-all duration-300"
               >
                 View Selected Work
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -103,7 +103,7 @@ export default function Home() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -116,16 +116,16 @@ export default function Home() {
         <ScrollReveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16">
             <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
                 Selected Work
               </p>
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900">
+              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
                 Recent Projects
               </h2>
             </div>
             <Link 
               to={createPageUrl('Work')}
-              className="mt-4 md:mt-0 text-sm text-zinc-500 hover:text-zinc-900 transition-colors duration-300 group flex items-center"
+              className="mt-4 md:mt-0 text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300 group flex items-center"
             >
               View all projects
               <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -144,19 +144,19 @@ export default function Home() {
       <Section size="large" background="white">
         <div className="max-w-3xl mx-auto text-center">
           <ScrollReveal>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-6">
               Philosophy
             </p>
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
-            <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-zinc-900 leading-[1.3]">
+            <h2 className="text-2xl md:text-4xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.3]">
               Research that bridges simulation and reality. Every algorithm, every model, every dataset serves to advance wireless communications.
             </h2>
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="mt-8 text-zinc-500 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-8 text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-2xl mx-auto">
               I believe in physics-informed approaches that respect the underlying principles of electromagnetic propagation. Every simulation, every neural network, every optimization serves to solve real-world problems in optical and wireless communications.
             </p>
           </ScrollReveal>
@@ -166,7 +166,7 @@ export default function Home() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -184,7 +184,7 @@ export default function Home() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.1}>
-            <p className="text-zinc-400 mb-10 max-w-xl mx-auto">
+            <p className="text-zinc-400 dark:text-zinc-500 mb-10 max-w-xl mx-auto">
               Open to research collaborations, internships, and opportunities in FSO communications and 5G-beyond networks.
             </p>
           </ScrollReveal>

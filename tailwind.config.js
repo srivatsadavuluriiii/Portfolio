@@ -7,6 +7,7 @@ export default {
     "./Components/**/*.{js,ts,jsx,tsx}",
     "./Layout.tsx",
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },

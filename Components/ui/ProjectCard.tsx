@@ -56,7 +56,7 @@ export function ProjectCard({
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Image Container */}
-          <div className="aspect-[4/3] bg-zinc-100 mb-5 overflow-hidden">
+          <div className="aspect-[4/3] bg-zinc-100 dark:bg-zinc-900 mb-5 overflow-hidden">
             {image ? (
               <motion.img 
                 src={image} 
@@ -66,8 +66,8 @@ export function ProjectCard({
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               />
             ) : (
-              <div className="w-full h-full bg-zinc-100 flex items-center justify-center">
-                <span className="text-zinc-300 text-sm tracking-wide">Project Visual</span>
+              <div className="w-full h-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
+                <span className="text-zinc-300 dark:text-zinc-600 text-sm tracking-wide">Project Visual</span>
               </div>
             )}
           </div>
@@ -75,31 +75,31 @@ export function ProjectCard({
           {/* Content */}
           <div className="space-y-2">
             <div className="flex items-start justify-between gap-4">
-              <h3 className="text-lg font-medium text-zinc-900 group-hover:text-zinc-600 transition-colors duration-300">
+              <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-300">
                 {title}
               </h3>
               <motion.div
-                className="text-zinc-400 group-hover:text-zinc-900 transition-colors duration-300"
+                className="text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors duration-300"
                 initial={{ opacity: 0, x: -10 }}
                 whileHover={{ opacity: 1, x: 0 }}
               >
                 <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             </div>
-            <p className="text-sm text-zinc-500 leading-relaxed">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
               {description}
             </p>
-            <div className="flex items-center gap-3 text-xs text-zinc-400 pt-1">
+            <div className="flex items-center gap-3 text-xs text-zinc-400 dark:text-zinc-500 pt-1">
               <span>{role}</span>
-              <span className="w-1 h-1 rounded-full bg-zinc-300" />
+              <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
               <span>{year}</span>
             </div>
           </div>
           
           {/* Underline Animation */}
-          <div className="mt-4 h-px bg-zinc-200 relative overflow-hidden">
+          <div className="mt-4 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
             <motion.div 
-              className="absolute inset-0 bg-zinc-900"
+              className="absolute inset-0 bg-zinc-900 dark:bg-zinc-100"
               initial={{ scaleX: 0 }}
               whileHover={{ scaleX: 1 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -156,21 +156,21 @@ export function ProjectListItem({
     >
       <Link to={createPageUrl(`ProjectDetail?slug=${slug}`)}>
         <motion.article 
-          className="group py-6 border-b border-zinc-200 cursor-pointer"
+          className="group py-6 border-b border-zinc-200 dark:border-zinc-800 cursor-pointer"
           whileHover={!isMobile && !prefersReducedMotion ? { x: 4 } : {}}
           whileTap={isMobile && !prefersReducedMotion ? { scale: 0.98 } : {}}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div className="flex-1">
-              <h3 className="text-lg font-medium text-zinc-900 group-hover:text-zinc-600 transition-colors duration-300">
+              <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors duration-300">
                 {title}
               </h3>
               {outcome && (
-                <p className="text-sm text-zinc-500 mt-1">{outcome}</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">{outcome}</p>
               )}
             </div>
-            <div className="flex items-center gap-6 text-sm text-zinc-400">
+            <div className="flex items-center gap-6 text-sm text-zinc-400 dark:text-zinc-500">
               <span>{role}</span>
               <span>{year}</span>
               <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

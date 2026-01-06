@@ -61,7 +61,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="aspect-[4/5] bg-zinc-100 overflow-hidden">
+            <div className="aspect-[4/5] bg-zinc-100 dark:bg-zinc-900 overflow-hidden">
               <img 
                 src="/portrait.png"
                 alt="Srivatsa Davuluri"
@@ -73,7 +73,7 @@ export default function About() {
           {/* Content */}
           <div className="lg:col-span-7">
             <motion.p
-              className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-4"
+              className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
@@ -82,7 +82,7 @@ export default function About() {
             </motion.p>
             
             <motion.h1
-              className="text-3xl md:text-4xl font-medium tracking-tight text-zinc-900 leading-[1.2] mb-8"
+              className="text-3xl md:text-4xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.2] mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -91,7 +91,7 @@ export default function About() {
             </motion.h1>
             
             <motion.div
-              className="space-y-6 text-zinc-600 leading-relaxed"
+              className="space-y-6 text-zinc-600 dark:text-zinc-300 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -113,7 +113,7 @@ export default function About() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -124,10 +124,10 @@ export default function About() {
       {/* Experience */}
       <Section size="large" background="light">
         <FadeIn>
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
             Experience
           </p>
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-12">
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-12">
             Where I've worked
           </h2>
         </FadeIn>
@@ -135,15 +135,15 @@ export default function About() {
         <div className="space-y-0">
           {experience.map((job, index) => (
             <FadeIn key={job.company} delay={index * 0.1}>
-              <div className="py-8 border-b border-zinc-200 last:border-b-0">
+              <div className="py-8 border-b border-zinc-200 dark:border-zinc-800 last:border-b-0">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
                   <div>
-                    <h3 className="text-lg font-medium text-zinc-900">{job.role}</h3>
-                    <p className="text-zinc-500">{job.company}</p>
+                    <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{job.role}</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400">{job.company}</p>
                   </div>
-                  <p className="text-sm text-zinc-400 md:text-right">{job.period}</p>
+                  <p className="text-sm text-zinc-400 dark:text-zinc-500 md:text-right">{job.period}</p>
                 </div>
-                <p className="text-zinc-600 max-w-2xl">{job.description}</p>
+                <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl">{job.description}</p>
               </div>
             </FadeIn>
           ))}
@@ -153,10 +153,10 @@ export default function About() {
       {/* Skills */}
       <Section size="large" background="white">
         <FadeIn>
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
             Skills
           </p>
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-12">
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-12">
             What I do
           </h2>
         </FadeIn>
@@ -164,8 +164,8 @@ export default function About() {
         <Accordion type="single" collapsible className="w-full">
           {skills.map((skill, index) => (
             <FadeIn key={skill.category} delay={index * 0.1}>
-              <AccordionItem value={skill.category} className="border-zinc-200">
-                <AccordionTrigger className="text-lg font-medium text-zinc-900 hover:no-underline py-6">
+              <AccordionItem value={skill.category} className="border-zinc-200 dark:border-zinc-800">
+                <AccordionTrigger className="text-lg font-medium text-zinc-900 dark:text-zinc-100 hover:no-underline py-6">
                   {skill.category}
                 </AccordionTrigger>
                 <AccordionContent className="pb-6">
@@ -173,7 +173,7 @@ export default function About() {
                     {skill.items.map((item) => (
                       <span 
                         key={item}
-                        className="px-4 py-2 text-sm text-zinc-600 border border-zinc-200 rounded-full"
+                        className="px-4 py-2 text-sm text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-full"
                       >
                         {item}
                       </span>
@@ -189,7 +189,7 @@ export default function About() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -200,10 +200,10 @@ export default function About() {
       {/* Principles */}
       <Section size="large" background="light">
         <FadeIn>
-          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
             Philosophy
           </p>
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-12">
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-12">
             How I work
           </h2>
         </FadeIn>
@@ -216,9 +216,9 @@ export default function About() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-xs text-zinc-400 font-mono">{principle.number}</span>
-                <h3 className="text-lg font-medium text-zinc-900">{principle.title}</h3>
-                <p className="text-zinc-600 leading-relaxed">{principle.description}</p>
+                <span className="text-xs text-zinc-400 dark:text-zinc-500 font-mono">{principle.number}</span>
+                <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{principle.title}</h3>
+                <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed">{principle.description}</p>
               </motion.div>
             </FadeIn>
           ))}

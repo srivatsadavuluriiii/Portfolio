@@ -33,7 +33,7 @@ export default function Contact() {
       <Section size="large" background="white">
         <div className="max-w-3xl">
           <motion.p
-            className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-4"
+            className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -42,7 +42,7 @@ export default function Contact() {
           </motion.p>
           
           <motion.h1
-            className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 leading-[1.1] mb-8"
+            className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1] mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -51,7 +51,7 @@ export default function Contact() {
           </motion.h1>
           
           <motion.p
-            className="text-lg text-zinc-500 leading-relaxed mb-12"
+            className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -68,16 +68,16 @@ export default function Contact() {
           >
             <a 
               href="mailto:connect.davuluri@gmail.com"
-              className="flex items-center gap-3 text-zinc-600 hover:text-zinc-900 transition-colors duration-300 group"
+              className="flex items-center gap-3 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300 group"
             >
               <Mail className="w-5 h-5" />
-              <span className="border-b border-transparent group-hover:border-zinc-900 transition-all duration-300">
+              <span className="border-b border-transparent group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-all duration-300">
                 connect.davuluri@gmail.com
               </span>
               <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
             
-            <div className="flex items-center gap-3 text-zinc-500">
+            <div className="flex items-center gap-3 text-zinc-500 dark:text-zinc-400">
               <MapPin className="w-5 h-5" />
               <span>Vellore, Tamil Nadu, India</span>
             </div>
@@ -88,7 +88,7 @@ export default function Contact() {
       {/* Divider */}
       <div className="max-w-6xl mx-auto px-6 md:px-8">
         <motion.div 
-          className="h-px bg-zinc-200"
+          className="h-px bg-zinc-200 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
@@ -101,22 +101,22 @@ export default function Contact() {
           {/* Left - CTA */}
           <FadeIn>
             <div className="max-w-md">
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 mb-6">
+              <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">
                 Research & Opportunities
               </h2>
-              <p className="text-zinc-600 leading-relaxed mb-8">
+              <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed mb-8">
                 Currently seeking research opportunities, internships, and collaborations in Free Space Optical communications, 5G-beyond networks, and AI-assisted signal processing.
               </p>
               
-              <div className="space-y-4 text-sm text-zinc-500">
+              <div className="space-y-4 text-sm text-zinc-500 dark:text-zinc-400">
                 <p>
-                  <span className="text-zinc-900 font-medium">Response time:</span> Usually within 24-48 hours
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium">Response time:</span> Usually within 24-48 hours
                 </p>
                 <p>
-                  <span className="text-zinc-900 font-medium">Status:</span> Final-year undergraduate, graduating Aug 2026
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium">Status:</span> Final-year undergraduate, graduating Aug 2026
                 </p>
                 <p>
-                  <span className="text-zinc-900 font-medium">Phone:</span> (+91) 9873342537
+                  <span className="text-zinc-900 dark:text-zinc-100 font-medium">Phone:</span> (+91) 9873342537
                 </p>
               </div>
             </div>
@@ -130,27 +130,27 @@ export default function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex flex-col items-center justify-center h-full text-center py-12"
               >
-                <div className="w-16 h-16 rounded-full bg-zinc-900 flex items-center justify-center mb-6">
-                  <Send className="w-6 h-6 text-white" />
+                <div className="w-16 h-16 rounded-full bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center mb-6">
+                  <Send className="w-6 h-6 text-white dark:text-zinc-900" />
                 </div>
-                <h3 className="text-xl font-medium text-zinc-900 mb-2">
+                <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-2">
                   Message sent
                 </h3>
-                <p className="text-zinc-500">
+                <p className="text-zinc-500 dark:text-zinc-400">
                   Thank you for reaching out. I'll get back to you soon.
                 </p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <label className="text-sm text-zinc-600">Name</label>
+                  <label className="text-sm text-zinc-600 dark:text-zinc-300">Name</label>
                   <Input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your name"
                     required
-                    className="h-12 rounded-none border-zinc-300 focus:border-zinc-900 focus:ring-0 transition-colors duration-200"
+                    className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
                   />
                 </div>
                 
@@ -162,7 +162,7 @@ export default function Contact() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="your@email.com"
                     required
-                    className="h-12 rounded-none border-zinc-300 focus:border-zinc-900 focus:ring-0 transition-colors duration-200"
+                    className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
                   />
                 </div>
                 

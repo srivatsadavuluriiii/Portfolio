@@ -9,9 +9,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'default', ...props }, ref) => {
     const variants = {
-      default: 'bg-zinc-900 text-white hover:bg-zinc-800',
-      outline: 'border border-zinc-900 bg-transparent hover:bg-zinc-50',
-      ghost: 'hover:bg-zinc-100',
+      default: 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200',
+      outline: 'border border-zinc-900 dark:border-zinc-100 bg-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900',
+      ghost: 'hover:bg-zinc-100 dark:hover:bg-zinc-900',
     };
 
     const sizes = {
@@ -23,7 +23,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-100 disabled:pointer-events-none disabled:opacity-50',
           variants[variant],
           sizes[size],
           className

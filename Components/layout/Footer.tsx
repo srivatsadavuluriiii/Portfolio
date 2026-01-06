@@ -10,13 +10,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-white border-t border-zinc-200">
+    <footer className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
           {/* Left - Name & Copyright */}
           <div className="space-y-2">
-            <p className="text-sm font-medium text-zinc-900">Srivatsa Davuluri</p>
-            <p className="text-xs text-zinc-400">
+            <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">Srivatsa Davuluri</p>
+            <p className="text-xs text-zinc-400 dark:text-zinc-500">
               © {currentYear} All rights reserved.
             </p>
           </div>
@@ -29,12 +29,12 @@ export default function Footer() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative text-sm text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
+                className="relative text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors duration-300"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
               >
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-zinc-900 dark:bg-zinc-100 hover:w-full transition-all duration-300" />
               </motion.a>
             ))}
           </div>
@@ -42,7 +42,7 @@ export default function Footer() {
         
         {/* Bottom Divider Animation */}
         <motion.div 
-          className="mt-12 h-px bg-zinc-100"
+          className="mt-12 h-px bg-zinc-100 dark:bg-zinc-800"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
@@ -50,7 +50,7 @@ export default function Footer() {
         />
         
         {/* Minimal tagline */}
-        <p className="mt-8 text-xs text-zinc-300 text-center">
+        <p className="mt-8 text-xs text-zinc-300 dark:text-zinc-600 text-center">
           Crafted with intention.
         </p>
       </div>

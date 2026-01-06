@@ -15,8 +15,8 @@ export function Section({
   size = 'default'
 }: SectionProps) {
   const backgrounds: Record<'white' | 'light' | 'dark', string> = {
-    white: 'bg-white',
-    light: 'bg-zinc-50',
+    white: 'bg-white dark:bg-zinc-950',
+    light: 'bg-zinc-50 dark:bg-zinc-900',
     dark: 'bg-zinc-950 text-white'
   };
   
@@ -57,11 +57,11 @@ export function SectionHeader({
   return (
     <div className={cn('mb-12 md:mb-16 max-w-2xl', alignments[align], className)}>
       {subtitle && (
-        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 mb-3">
+        <p className="text-xs uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-3">
           {subtitle}
         </p>
       )}
-      <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900">
+      <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
         {title}
       </h2>
     </div>
