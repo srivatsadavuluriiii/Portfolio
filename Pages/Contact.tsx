@@ -1,43 +1,32 @@
-import { useState, FormEvent, useCallback, ChangeEvent, memo } from 'react';
+import { useState, FormEvent, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/Components/ui/Section';
 import { FadeIn } from '@/Components/ui/AnimatedText';
 import { Button } from '@/Components/ui/button';
-import { Input } from '@/Components/ui/input';
-import { Textarea } from '@/Components/ui/textarea';
 import { ArrowUpRight, Mail, MapPin, Send } from 'lucide-react';
 
-// Memoized input components to prevent unnecessary re-renders
-const MemoizedInput = memo(Input);
-const MemoizedTextarea = memo(Textarea);
-
 export default function Contact() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  // Individual state handlers - prevents re-render of other fields
-  const handleNameChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setName(e.target.value);
-  }, []);
-  
-  const handleEmailChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setEmail(e.target.value);
-  }, []);
-  
-  const handleMessageChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-    e.stopPropagation();
-    setMessage(e.target.value);
-  }, []);
+  // Use refs instead of controlled inputs to avoid re-renders
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsSubmitting(true);
+    
+    // Access values from refs instead of state
+    const formData = {
+      name: nameRef.current?.value || '',
+      email: emailRef.current?.value || '',
+      message: messageRef.current?.value || ''
+    };
+    
+    console.log('Form submitted:', formData);
     
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -163,42 +152,42 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label htmlFor="name-input" className="text-sm text-zinc-600 dark:text-zinc-300">Name</label>
-                  <MemoizedInput
+                  <input
+                    ref={nameRef}
                     id="name-input"
+                    name="name"
                     type="text"
-                    value={name}
-                    onChange={handleNameChange}
                     placeholder="Your name"
                     required
                     autoComplete="name"
-                    className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
+                    className="flex h-12 w-full rounded-none border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus-visible:outline-none focus-visible:border-zinc-900 dark:focus-visible:border-zinc-100 transition-colors duration-200"
                   />
                 </div>
                 
                 <div className="space-y-2">
                   <label htmlFor="email-input" className="text-sm text-zinc-600 dark:text-zinc-300">Email</label>
-                  <MemoizedInput
+                  <input
+                    ref={emailRef}
                     id="email-input"
+                    name="email"
                     type="email"
-                    value={email}
-                    onChange={handleEmailChange}
                     placeholder="your@email.com"
                     required
                     autoComplete="email"
-                    className="h-12 rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200"
+                    className="flex h-12 w-full rounded-none border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus-visible:outline-none focus-visible:border-zinc-900 dark:focus-visible:border-zinc-100 transition-colors duration-200"
                   />
                 </div>
                 
                 <div className="space-y-2">
                   <label htmlFor="message-input" className="text-sm text-zinc-600 dark:text-zinc-300">Message</label>
-                  <MemoizedTextarea
+                  <textarea
+                    ref={messageRef}
                     id="message-input"
-                    value={message}
-                    onChange={handleMessageChange}
+                    name="message"
                     placeholder="Tell me about your research opportunity or collaboration..."
                     required
                     rows={6}
-                    className="rounded-none border-zinc-300 dark:border-zinc-700 focus:border-zinc-900 dark:focus:border-zinc-100 focus:ring-0 transition-colors duration-200 resize-none"
+                    className="flex min-h-[80px] w-full rounded-none border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus-visible:outline-none focus-visible:border-zinc-900 dark:focus-visible:border-zinc-100 transition-colors duration-200 resize-none"
                   />
                 </div>
                 
