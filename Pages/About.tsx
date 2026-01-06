@@ -65,7 +65,7 @@ export default function About() {
               <img 
                 src="/portrait.png"
                 alt="Srivatsa Davuluri"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover"
               />
             </div>
           </motion.div>
