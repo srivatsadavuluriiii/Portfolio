@@ -26,7 +26,7 @@ const projects = [
   },
   {
     title: 'Python-informed Mode Switching RL Framework for 5G-beyond Network Targets',
-    description: 'Developed a physics-aware RL framework complying with 6G KPI targets, optimally switching OAM modes to current environment and signal conditions, achieving sub-0.1 ms latency.',
+    description: 'Developed a physics-aware RL framework complying with 5G-beyond KPI targets, optimally switching OAM modes to current environment and signal conditions, achieving sub-0.1 ms latency.',
     role: 'Research Engineer',
     year: 'Oct 2025 — Present',
     outcome: '80+% prediction accuracy across scenarios',
