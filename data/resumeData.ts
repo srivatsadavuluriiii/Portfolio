@@ -45,6 +45,7 @@ export interface ResumeData {
     tagline: string;
     mainText: string[];
     description: string;
+    crypticPhrases: string[];
   };
   projects: Project[];
   experience: Experience[];
@@ -66,6 +67,14 @@ const wirelessResume: ResumeData = {
     tagline: 'Research Engineer & Developer',
     mainText: ['Interests in optical', 'communications and', 'beyond 5G networks.'],
     description: 'Exploring Free Space Optical communications and 5G-beyond networks through AI-assisted signal processing and simulation frameworks.',
+    crypticPhrases: [
+      'Physics-informed AI for wireless systems',
+      'Simulation frameworks for 5G research',
+      'OAM multiplexing in turbulent channels',
+      'Deep learning for signal recovery',
+      'Reinforcement learning for network optimization',
+      'Free space optical communications'
+    ],
   },
   projects: [
     {
@@ -282,6 +291,14 @@ const aiMlResume: ResumeData = {
     tagline: 'Software Engineer & ML Researcher',
     mainText: ['Building intelligent', 'systems and scalable', 'solutions.'],
     description: 'Developing machine learning models and software systems that solve real-world problems through AI-driven innovation and enterprise-grade architecture.',
+    crypticPhrases: [
+      'Machine learning for financial markets',
+      'AI-powered fintech ecosystems',
+      'Sentiment analysis for trading',
+      'LSTM networks for stock prediction',
+      'Enterprise-grade microservices',
+      'Cross-disciplinary innovation'
+    ],
   },
   projects: [
     {
