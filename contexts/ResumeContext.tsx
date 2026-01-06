@@ -1,17 +1,16 @@
-import { createContext, useContext, useState, ReactNode, useCallback, useRef, startTransition } from 'react';
+import { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 
 export type ResumeType = 'wireless' | 'ai-ml';
 
 interface ResumeContextType {
   resumeType: ResumeType;
   setResumeType: (type: ResumeType) => void;
-  isTransitioning: boolean;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: ReactNode }) {
-  const [resumeType, setResumeType] = useState<ResumeType>(() => {
+  const [resumeType] = useState<ResumeType>(() => {
     // Check localStorage first
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('resumeType');
@@ -21,38 +20,20 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     }
     return 'wireless'; // Default to wireless
   });
-  
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimeoutRef = useRef<number | null>(null);
 
   const handleSetResumeType = useCallback((type: ResumeType) => {
     // Prevent rapid successive changes
     if (type === resumeType) return;
     
-    // Cancel any pending transition
-    if (transitionTimeoutRef.current) {
-      clearTimeout(transitionTimeoutRef.current);
+    // Save to localStorage and reload page for clean state
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('resumeType', type);
+      window.location.reload();
     }
-    
-    setIsTransitioning(true);
-    
-    // Use startTransition to mark this as non-urgent, allowing React to batch updates
-    startTransition(() => {
-      setResumeType(type);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('resumeType', type);
-      }
-    });
-    
-    // Clear transitioning state after a short delay
-    transitionTimeoutRef.current = window.setTimeout(() => {
-      setIsTransitioning(false);
-      transitionTimeoutRef.current = null;
-    }, 300);
   }, [resumeType]);
 
   return (
-    <ResumeContext.Provider value={{ resumeType, setResumeType: handleSetResumeType, isTransitioning }}>
+    <ResumeContext.Provider value={{ resumeType, setResumeType: handleSetResumeType }}>
       {children}
     </ResumeContext.Provider>
   );
